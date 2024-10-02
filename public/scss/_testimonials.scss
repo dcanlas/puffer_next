@@ -1,0 +1,163 @@
+   /*** 
+
+====================================================================
+  testimonial-section
+====================================================================
+
+***/
+
+.testimonial-section{
+    position: relative;
+    padding: 111px 0 90px;
+    @include media-breakpoint-down(sm){
+        padding: 80px 0;
+    }
+}
+
+.testimonial-column{
+    .inner-column{
+        .sec-title{
+            margin-bottom: 64px;
+            @include media-breakpoint-down(sm){
+                margin-bottom: 30px;
+            }
+            .sub-title{
+                @include media-breakpoint-down(sm){
+                    margin-bottom: 0;
+                }
+                &::before{
+                    display: none;
+                }
+                &:after {
+                    background-image: url(../images/icons/before-white.png);
+                }
+            }
+            h2{
+                @include media-breakpoint-down(sm){
+                    font-size: 32px;
+                }
+            }
+        }
+        .testimonial-slide{
+            .content-box{
+                position: relative;
+                padding-left: 193px;
+                @include media-breakpoint-down(xl){
+                    padding-left: 170px;
+                }
+                @include media-breakpoint-down(sm){
+                    padding-left: 0;
+                }
+                .image-box{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    @include media-breakpoint-down(sm){
+                        position: static;
+                    }
+                    .thumb{
+                        position: relative;
+                        z-index: 99;
+                        &::before{
+                            content: "";
+                            position: absolute;
+                            top: 10px;
+                            right: -10px;
+                            width: 110px;
+                            height: 200px;
+                            background-color: #a98860;
+                        }
+                        img{
+                            position: relative;
+                        }
+                    }
+                }
+            }
+            .info-box{
+                .rating-list{
+                    display: flex;
+                    margin-bottom: 16px;
+                    li{
+                        color: var(--theme-color-light);
+                        font-size: 16px;
+                        margin-right: 2px;
+                        &:last-child{
+                            margin-right: 0;
+                        }
+                    }
+                }
+                .text{
+                    color: var(--theme-color-light);
+                    margin-bottom: 26px;
+                    @include media-breakpoint-down(xl){
+                        font-size: 19px;
+                    }
+                    @include media-breakpoint-down(lg){
+                        font-size: 16px;
+                    }
+                }
+                .auther-info{
+                    .title{
+                        color: var(--theme-color-light);
+                        margin-bottom: -6px;
+                    }
+                    .designation{
+                        color: var(--theme-color-light);
+                    }
+                }
+                .icon-box{
+                    position: absolute;
+                    right: 15px;
+                    bottom: 50px;
+                    .image{
+                        img{
+                            width: unset;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.testimonial-slider {
+    .slick-dots {
+        width: auto;
+        bottom: -6px;
+        right: 0;
+        text-align: right;
+        li {
+            width: 14px;
+            height: 14px;
+            border:1px solid #fff;
+            border-radius: 50%;
+            border-color: transparent;
+            transition: all 0.3s ease;
+            &.slick-active {
+                border-color: #fff;
+            }
+            button {
+                width: 4px;
+                height: 4px;
+                background: #ffffff;
+                padding:0;
+                border-radius: 50%;
+                position: absolute;
+                top:50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                &:before {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width:1200px) {
+    .hide-on-tablet {display: none;}
+    .testimonial-column {max-width: 100%;flex:0 0 100%;}
+}
+

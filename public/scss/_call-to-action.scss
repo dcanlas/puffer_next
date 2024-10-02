@@ -1,0 +1,130 @@
+/*** 
+
+====================================================================
+  call-section
+====================================================================
+
+***/
+
+.call-to-action{
+    position: relative;
+    padding: 120px 0;
+    .booking-form-column .inner-column {
+        margin:0;
+        &:after {
+            left: auto;
+            top: auto;
+            bottom: -120px;
+            right: -75px;
+        }
+    }
+    .content-colum{
+        .inner-column{
+            .sec-title{
+                margin-bottom: 54px;
+                .sub-title{
+                    &::before{
+                        display: none;
+                    }
+                }
+                h2{
+                    @include media-breakpoint-down(sm){
+                        font-size: 37px;
+                    }
+                }
+            }
+            .call-block{
+                margin-bottom: 42px;
+                .inner-box{
+                    padding-left: 110px;
+                    position: relative;
+                    .icon-box{
+                        position: absolute;
+                        left: 0;
+                        width: 84px;
+                        height: 84px;
+                        background-color: #fff;
+                        border-radius: 50%;
+                        box-shadow: 0 0 10px rgba(0,0,0,0.10);
+                        display: flex;
+                        justify-content: center;
+                        transition: all 0.3s ease;
+                        align-items: center;
+                        i {
+                            color: var(--theme-color1);
+                            font-size: 48px;
+                            transition: all 0.3s ease;
+                        }
+                    }
+                    .title{
+                        margin-bottom: 13px;
+                        @include media-breakpoint-down(sm){
+                            font-size: 20px;
+                        }
+                    }
+                    .text{
+                        @include media-breakpoint-down(xl){
+                            font-size: 15px;
+                        }
+                        @include media-breakpoint-down(sm){
+                            font-size: 17px;
+                        }
+                    }
+                    &:hover {
+                        .icon-box {
+                            background-color: var(--theme-color1);
+                            i {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+            .btn-box{
+                .read-more{
+                    margin-top: 4px;
+                    background-color: var(--theme-color-dark);
+                    color: var(--theme-color-light);
+                    width: 170px;
+                    height: 60px;
+                    line-height: 60px;
+                    display: inline-block;
+                    text-align: center;
+                    text-transform: uppercase;
+                    font-family: var(--text-font2);
+                    position: relative;
+                    z-index: 9;
+                    &:before {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 100%;
+                        content: "";
+                        z-index: -1;
+                        background-color: var(--bg-theme-color1);
+                        border-radius: inherit;
+                        transform: scale(0, 1);
+                        transform-origin: top right;
+                        transition: -webkit-transform 500ms cubic-bezier(0.860, 0.000, 0.070, 1.000);
+                        transition: transform 500ms cubic-bezier(0.860, 0.000, 0.070, 1.000);
+                        transition: transform 500ms cubic-bezier(0.860, 0.000, 0.070, 1.000), -webkit-transform 500ms cubic-bezier(0.860, 0.000, 0.070, 1.000);
+                        transition-timing-function: cubic-bezier(0.860, 0.000, 0.070, 1.000);
+                    }
+                    &:hover:before {
+                        transform: scale(1, 1);
+                        transform-origin: bottom left;
+                    }
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width:991px) {
+    .call-to-action .content-colum {margin-bottom: 50px;}
+}

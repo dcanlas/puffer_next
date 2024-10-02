@@ -1,0 +1,91 @@
+/*** 
+
+====================================================================
+Section Title
+====================================================================
+
+***/
+
+.sec-title {
+    position: relative;
+    margin-bottom: 49px;
+    &.white {
+        .sub-title {
+            &:before {
+                display: none;
+            }
+        }
+        h2 {
+            color: #fff;
+        }
+    }
+    .sub-title{
+        position: relative;
+        font-size: 18px;
+        color: var(--text-color);
+        text-transform: uppercase;
+        display: inline-block;
+        margin-bottom: 14px;
+        font-family: var(--text-font2);
+        letter-spacing: 7.8px;
+        &::before{
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: -50px;
+            width: 37px;
+            height: 10px;
+            background-image: url(../images/icons/before.png);
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 100%;
+            margin-left: 5px;
+            width: 37px;
+            height: 10px;
+            background-image: url(../images/icons/before.png);
+        }
+    }
+    h2 {
+        position: relative;
+        display: block;
+        font-size: var(--sec-title-font-size);
+        color: var(--sec-title-color);
+        font-family: var(--sec-title-font-family);
+        font-weight: var(--sec-title-font-weight);
+        margin-bottom: 0;
+        z-index: 2;
+    }
+    .text {
+        margin-top: 24px;
+    }
+    &.light{
+        .sub-title,
+        .text,
+        h2,
+        h1{
+            color: #fff;
+        }
+    }
+}
+
+
+
+@media only screen and (max-width:1200px) {
+    .sec-title h2 br {display: none;}
+    br {display: none;}
+    .sec-title h2 {font-size: 44px;line-height: 52px;}
+}
+
+@media only screen and (max-width:767px) {
+    .sec-title h2 {font-size: 40px;line-height: 50px;}
+    .sec-title .sub-title {letter-spacing: 5px;}
+}
+
+@media only screen and (max-width:480px) {
+    .sec-title .sub-title {letter-spacing: 3px;}
+}
+
+

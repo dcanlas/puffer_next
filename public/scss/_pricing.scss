@@ -1,0 +1,266 @@
+
+/***
+
+==================================================================
+	pricing section 
+==================================================================
+
+***/
+
+.pricing-section{
+    position: relative;
+    padding: 120px 0 95px;
+    background-color: var(--theme-color3);
+    @include media-breakpoint-down(sm){
+        padding: 80px 0 70px;
+    }
+    .sec-title{
+        @include media-breakpoint-down(sm){
+            margin-bottom: 30px;
+        }
+        .sub-title{
+            @include media-breakpoint-down(sm){
+                margin-bottom: 0;
+            }
+        }
+        h2{
+            @include media-breakpoint-down(sm){
+               font-size: 35px;
+            }
+        }
+    }
+}
+// pricing-block
+.pricing-block{
+    margin-bottom: 13px;
+    .inner-box{
+        position: relative;
+        padding: 10px 0 13px 99px;
+        &:hover {
+            .thumb {
+                img {
+                    transform: scale(1.2);
+                }
+            }
+        }
+        .food-pack {
+            display: inline-block;
+            position: absolute;
+            top:8px;
+            right: 0;
+            border:1px solid var(--theme-color1);
+            padding: 0 13px;
+            height: 24px;
+            line-height: 20px;
+            color: var(--theme-color1);
+            font-size: 12px;
+            font-family: var(--text-font2);
+            letter-spacing: 1px;
+            z-index: 9;
+            text-transform: uppercase;
+        }
+        .thumb{
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            max-width: 80px;
+            img {
+                transition: all 0.3s ease;
+            }
+        }
+        .content-box{
+            .title{
+                font-size: 20px;
+                margin-bottom: 0;
+                display: flex;
+                justify-content: space-between;
+                span{
+                    color: #222222;
+                    position: relative;
+                    &::before{
+                        content: "";
+                        position: absolute;
+                        top: 20px;
+                        left: -269px;
+                        width: 259px;
+                        height: 1px;
+                        border: 1px dashed #c0bfbe;
+                        @include media-breakpoint-down(xl){
+                            left: -197px;
+                            width: 190px;
+                        }
+                        @include media-breakpoint-down(lg){
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .designation{
+                font-size: 14px;
+                margin-bottom: 7px;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+/***
+
+==================================================================
+	pricing section two
+==================================================================
+
+***/
+
+.pricing-section-two{
+    position: relative;
+    padding: 120px 0;
+    @include media-breakpoint-down(md){
+        padding: 80px 0 40px;
+    }
+    .sec-title{
+        h2{
+            @include media-breakpoint-down(sm){
+                font-size: 32px;
+                line-height: 40px;
+            }
+        }
+    }
+}
+// pricing-block-two
+.pricing-block-two{
+    @include media-breakpoint-down(md){
+        margin-bottom: 40px;
+    }
+    .list-style-two {
+        margin-top: 30px;
+        li {
+            margin-bottom: 10px;
+        }
+    }
+    .inner-box{
+        position: relative;
+        .content-column{
+            .inner-column{
+                position: relative;
+                background-color: #f8f5f0;
+                padding: 36px 40px 40px;
+                margin-right: -75px;
+                z-index: 99;
+                margin-top: 34px;
+                @include media-breakpoint-down(xl){
+                    margin-right: -113px;
+                }
+                @include media-breakpoint-down(lg){
+                    margin-top: 0;
+                }
+                &::before{
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 41px;
+                    width: 95px;
+                    height: 13px;
+                    background-color: var(--theme-color1);
+                }
+                .title{
+                    font-size: 48px;
+                    color: var(--theme-color1);
+                    margin-bottom: -14px;
+                    span{
+                        font-size: 14px;
+                        color: var(--theme-color-dark);
+                    }
+                }
+                span{
+                    font-size: 27px;
+                    color: var(--theme-color-dark);
+                    font-family: var(--title-font);
+                }
+                .book-now{
+                    font-size: 12px;
+                    padding: 0 30px;
+                    background-color: var(--theme-color-dark);
+                    height: 40px;
+                    color: var(--theme-color-light);
+                    display: inline-block;
+                    font-feature-settings: var(--text-font2);
+                    line-height: 40px;
+                    text-align: center;
+                    margin-top: 22px;
+                    text-transform: uppercase;
+                    position: relative;
+                    z-index: 9;
+                    &:before {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 100%;
+                        content: "";
+                        z-index: -1;
+                        background-color: var(--bg-theme-color1);
+                        border-radius: inherit;
+                        transform: scale(0, 1);
+                        transform-origin: top right;
+                        transition: -webkit-transform 500ms cubic-bezier(0.860, 0.000, 0.070, 1.000);
+                        transition: transform 500ms cubic-bezier(0.860, 0.000, 0.070, 1.000);
+                        transition: transform 500ms cubic-bezier(0.860, 0.000, 0.070, 1.000), -webkit-transform 500ms cubic-bezier(0.860, 0.000, 0.070, 1.000);
+                        transition-timing-function: cubic-bezier(0.860, 0.000, 0.070, 1.000);
+                    }
+                    &:hover:before {
+                        transform: scale(1, 1);
+                        transform-origin: bottom left;
+                    }
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .image-column{
+            .image-box{
+                height: 100%;
+                figure {
+                    height: 100%;
+                    position: relative;
+                    &:before {
+                        background: rgba(255, 255, 255, 0.3);
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 0;
+                        opacity: 1;
+                        z-index: 9;
+                        pointer-events: none;
+                    }
+                    &:hover {
+                        &:before {
+                            height: 100%;
+                            opacity: 0;
+                            -webkit-transition: all 400ms linear;
+                            transition: all 400ms linear;
+                        }
+                    }
+                    img {
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .pricing-block-two .inner-box .image-column .image-box {display: none;}
+    .pricing-block-two .inner-box .content-column .inner-column {margin-right: 0;}
+}
+
+@media only screen and (max-width:480px) {
+    .pricing-block .inner-box .food-pack {margin-top: 20px;position: static;}
+    .pricing-block .inner-box {padding-top: 0;}
+}

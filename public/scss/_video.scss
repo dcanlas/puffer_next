@@ -1,0 +1,91 @@
+/*** 
+
+====================================================================
+  video-section
+====================================================================
+
+***/
+
+.video-section{
+    position: relative;
+    padding: 299px 0 126px;
+    @include media-breakpoint-down(sm){
+        padding: 210px 0 80px;
+    }
+    // content-column
+    .content-column {
+        .inner-column{
+            .sec-title-two {
+                position: relative;
+                .sub-title{
+                    position: relative;
+                    font-size: 18px;
+                    color: var(--text-color);
+                    text-transform: uppercase;
+                    display: inline-block;
+                    font-family: var(--text-font2);
+                    letter-spacing: 7px;
+                    margin-bottom: 19px;
+                    @include media-breakpoint-down(sm){
+                        font-size: 15px;
+                    }
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        top: 10px;
+                        left: 100%;
+                        width: 37px;
+                        height: 10px;
+                        margin-left: 8px;
+                        background-image: url(../images/icons/before.png);
+                    }
+                }
+                h2 {
+                    position: relative;
+                    display: block;
+                    font-size: 60px;
+                    color: var(--theme-color-light);
+                    font-family: var(--sec-title-font-family);
+                    font-weight: var(--sec-title-font-weight);
+                    margin-bottom: 0;
+                    z-index: 2;
+                    @include media-breakpoint-down(xl){
+                        font-size: 53px;
+                    }
+
+                    @include media-breakpoint-down(md){
+                        font-size: 41px;
+                    }
+                    @include media-breakpoint-down(sm){
+                        font-size: 27px;
+                        line-height: 40px;
+                    }
+                }
+            }
+        }
+    }
+    // btn-column
+    .btn-column{
+        .inner-column{
+            .play-now-two{
+                position: absolute;
+                top: 120px;
+                font-size: 31px;
+                color: var(--theme-color1);
+                width: 150px;
+                height: 150px;
+                text-align: center;
+                line-height: 150px;
+                border: 1px solid var(--theme-color-light);
+                border-radius: 50%;
+                display: inline-block;
+                @include media-breakpoint-down(sm){
+                    width: 100px;
+                    height: 100px;
+                    line-height: 100px;
+                    top: 70px;
+                }
+            }
+        }
+    }
+}
