@@ -10,22 +10,21 @@ import Slider1 from "@/components/sections/Slider1"
 import Team from "@/components/sections/Team"
 import Testimonial1 from "@/components/sections/Testimonial1"
 import Video from "@/components/sections/Video"
+
 export default function Home() {
   return (
-    <>
-    <Layout>
-    <Slider1 />
-    <About1 addClass={"pt-0"} />
-    <Rooms />
-    <Services />
-    <Video />
-    <Features />
-    <Testimonial1 />
-    <Pricing />
-    <Team />
-    <Form />
-    <News1 />
+    <Layout headerStyle={1} footerStyle={1}>
+      <Slider1 />
+      <About1 addClass={"pt-0"} />
+      <Rooms />
+      <Services />
+      {/* <Video />
+      <Features /> */}
+      <Testimonial1 />
+      {/* <Pricing />
+      <Team /> */}
+      {/* <Form />
+      <News1 /> */}
     </Layout>
-    </>
   )
 }

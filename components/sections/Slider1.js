@@ -26,29 +26,60 @@ const swiperOptions = {
     }
 }
 
+const sliderDetails = [
+  {
+    imgSrc: 'images/banner/day-backshot.jpg',
+    alt: 'Picture from beach towards resort',
+    subtitle: 'Peaceful and chill',
+    linkTo: null
+  },
+  {
+    imgSrc: 'images/banner/front-night.jpg',
+    alt: 'Picture from beach towards resort',
+    subtitle: 'Peaceful and chill',
+    linkTo: null
+  },
+  {
+    imgSrc: 'images/banner/night-backshot.jpg',
+    alt: 'Picture from beach towards resort',
+    subtitle: 'Peaceful and chill',
+    linkTo: null
+  },
+  {
+    imgSrc: 'images/banner/secondfloor-one.jpg',
+    alt: 'Picture from beach towards resort',
+    subtitle: 'Peaceful and chill',
+    linkTo: null
+  },
+  {
+    imgSrc: 'images/banner/secondfloor-two.jpg',
+    alt: 'Picture from beach towards resort',
+    subtitle: 'Peaceful and chill',
+    linkTo: null
+  },
+]
+
 export default function Slider1() {
   return (
     <>
       <section className="banner-section">
         <Swiper {...swiperOptions} className="banner-slider owl-carousel owl-theme default-navs">
           {/* Slide Item */}
-          <SwiperSlide className="banner-slide slide-item">
-            <figure className="image"><img src="images/banner/banner-1.jpg" alt=""/></figure>
-            <div className="content-box">
-              <span className="sub-title" data-animation-in="fadeInUp" data-delay-in="0.1">unique place and luxury hotel</span>
-              <h1 data-animation-in="fadeInUp" data-delay-in="0.3">life enjoy with <br/>the great moments</h1>
-              <Link href="/page-about" className="btn" data-animation-in="fadeInUp" data-delay-in="0.5">rooms & suites</Link>
-            </div>
-          </SwiperSlide>
+          {sliderDetails.map((item, idx) => {
+            return (
+              <SwiperSlide className="banner-slide slide-item" key={idx}>
+                <figure className="image"><img src={item.imgSrc} alt={item.alt} /></figure>
+                <div className="content-box">
+                  <span className="sub-title" data-animation-in="fadeInUp" data-delay-in="0.1">{item.subtitle}</span>
+                  <h1 data-animation-in="fadeInUp" data-delay-in="0.3">life enjoy with <br/>the great moments</h1>
+                  {item.linkTo && (
+                  <Link href="/page-about" className="btn" data-animation-in="fadeInUp" data-delay-in="0.5">rooms & suites</Link>
+                  )}
+                </div>
+              </SwiperSlide>
+            ) 
+          })}
           {/* Slide Item */}
-          <SwiperSlide className="banner-slide slide-item">
-            <figure className="image"><img src="images/banner/banner-2.jpg" alt=""/></figure>
-            <div className="content-box">
-              <span className="sub-title" data-animation-in="fadeInUp" data-delay-in="0.1">unique place and luxury hotel</span>
-              <h1 data-animation-in="fadeInUp" data-delay-in="0.3">life enjoy with <br/>the great moments</h1>
-              <Link href="/page-about" className="btn" data-animation-in="fadeInUp" data-delay-in="0.5">rooms & suites</Link>
-            </div>
-          </SwiperSlide>
           <div className="owl-nav" style={{zIndex:"999"}}>
             <div className="owl-prev h1p">
               <span className="fa fa-long-arrow-alt-left" />
