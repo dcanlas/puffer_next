@@ -2868,21 +2868,21 @@ Section Title
 }
 .banner-section .content-box {
   position: relative;
-  text-align: center;
+  text-align: left;
   position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  min-width: 700px;
+  max-width: 700px;
+  background: var(--theme-color-dark);
+  padding: 12px;
 }
 .banner-section .content-box .sub-title {
   position: relative;
-  text-transform: uppercase;
   color: var(--theme-color-light);
   margin-bottom: 30px;
   display: inline-block;
-  margin-top: 70px;
 }
 @media (max-width: 575.98px) {
   .banner-section .content-box .sub-title {
@@ -2890,23 +2890,9 @@ Section Title
     line-height: 14px;
   }
 }
-.banner-section .content-box .sub-title::before {
-  content: "";
-  position: absolute;
-  top: -71px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  width: 45px;
-  height: 40px;
-  background-image: url(../images/resource/title-image.png);
-  z-index: 99;
-}
 .banner-section .content-box h1 {
   color: var(--theme-color-light);
-  text-transform: uppercase;
   font-size: 56px;
-  margin-bottom: 42px;
 }
 @media (max-width: 767.98px) {
   .banner-section .content-box h1 {
@@ -2917,8 +2903,6 @@ Section Title
   .banner-section .content-box h1 {
     font-size: 32px;
     line-height: 46px;
-    padding: 0 20px;
-    margin-bottom: 20px;
   }
 }
 .banner-section .content-box .btn {
@@ -3281,9 +3265,6 @@ Section Title
   }
 }
 @media only screen and (max-width: 767px) {
-  .banner-section .content-box {
-    min-width: 100%;
-  }
   .checkout-form-section .checkout-form .btn-style-one {
     margin-left: auto;
   }
@@ -3295,9 +3276,6 @@ Section Title
   }
 }
 @media only screen and (max-width: 576px) {
-  .banner-section .content-box {
-    margin-top: -80px;
-  }
   .checkout-form-section .checkout-form .checkout-field .chk-field input, .checkout-form-section .checkout-form .checkout-field .chk-field select {
     width: 100%;
   }
@@ -7220,7 +7198,7 @@ Page Title
 ====================================================================
 
 ***/
-@-webkit-keyframes "ripple" {
+@-webkit-keyframes ripple {
   70% {
     -webkit-box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
     box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
@@ -7230,7 +7208,7 @@ Page Title
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
 }
-@keyframes "ripple" {
+@keyframes ripple {
   70% {
     -webkit-box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
     box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);

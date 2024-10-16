@@ -28,35 +28,47 @@ const swiperOptions = {
 
 const sliderDetails = [
   {
-    imgSrc: 'images/banner/day-backshot.jpg',
+    imgSrc: 'images/banner/back-sand.jpg',
     alt: 'Picture from beach towards resort',
-    subtitle: 'Peaceful and chill',
+    subtitle: 'Beachfront Resort',
     linkTo: null
   },
-  {
-    imgSrc: 'images/banner/front-night.jpg',
-    alt: 'Picture from beach towards resort',
-    subtitle: 'Peaceful and chill',
-    linkTo: null
-  },
-  {
-    imgSrc: 'images/banner/night-backshot.jpg',
-    alt: 'Picture from beach towards resort',
-    subtitle: 'Peaceful and chill',
-    linkTo: null
-  },
-  {
-    imgSrc: 'images/banner/secondfloor-one.jpg',
-    alt: 'Picture from beach towards resort',
-    subtitle: 'Peaceful and chill',
-    linkTo: null
-  },
-  {
-    imgSrc: 'images/banner/secondfloor-two.jpg',
-    alt: 'Picture from beach towards resort',
-    subtitle: 'Peaceful and chill',
-    linkTo: null
-  },
+  // {
+  //   imgSrc: 'images/banner/front-day-1.jpg',
+  //   alt: 'Picture from beach towards resort',
+  //   subtitle: 'Comfortable and Peaceful Stay',
+  //   linkTo: null
+  // },
+  // {
+  //   imgSrc: 'images/banner/day-mid-2.jpg',
+  //   alt: 'Picture from beach towards resort',
+  //   subtitle: 'Feel the Sand Between your Toes',
+  //   linkTo: null
+  // },
+  // {
+  //   imgSrc: 'images/banner/secondfloor-one.jpg',
+  //   alt: 'Picture from beach towards resort',
+  //   subtitle: 'Activities for All',
+  //   linkTo: null
+  // },
+  // {
+  //   imgSrc: 'images/banner/back-angled-1.jpg',
+  //   alt: 'Picture from beach towards resort',
+  //   subtitle: 'Soak in the Sun',
+  //   linkTo: null
+  // },
+  // {
+  //   imgSrc: 'images/banner/front-night.jpg',
+  //   alt: 'Picture from beach towards resort',
+  //   subtitle: 'Sing the Night Away',
+  //   linkTo: null
+  // },
+  // {
+  //   imgSrc: 'images/banner/secondfloor-two.jpg',
+  //   alt: 'Picture from beach towards resort',
+  //   subtitle: 'A Slice of Paradise',
+  //   linkTo: null
+  // },
 ]
 
 export default function Slider1() {
@@ -70,8 +82,7 @@ export default function Slider1() {
               <SwiperSlide className="banner-slide slide-item" key={idx}>
                 <figure className="image"><img src={item.imgSrc} alt={item.alt} /></figure>
                 <div className="content-box">
-                  <span className="sub-title" data-animation-in="fadeInUp" data-delay-in="0.1">{item.subtitle}</span>
-                  <h1 data-animation-in="fadeInUp" data-delay-in="0.3">life enjoy with <br/>the great moments</h1>
+                  <h1 data-animation-in="fadeInUp" data-delay-in="0.3">{item.subtitle}</h1>
                   {item.linkTo && (
                   <Link href="/page-about" className="btn" data-animation-in="fadeInUp" data-delay-in="0.5">rooms & suites</Link>
                   )}
