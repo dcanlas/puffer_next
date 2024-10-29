@@ -3,6 +3,7 @@ import React from 'react';
 import BackToTop from '../elements/BackToTop'
 import Image from 'next/image'
 import LogoDark from './../../public/images/logo-2.png';
+import Logo from './../../public/images/resort-logo-horizontal.png';
 const Footer1 = () => {
     return (
         <>
@@ -14,7 +15,9 @@ const Footer1 = () => {
 					<div className="footer-column col-xl-3 col-sm-6">
 						<div className="footer-widget about-widget">
 							<div className="logo">
-								<Link href="/"><Image src={LogoDark} title='Hoexr' alt="" /></Link>
+								<Link href="/">
+									<Image width={150} height={50} src={Logo} alt="Puffer Isle Resort Logo" />
+								</Link>
 							</div>
 							<div className="text">Welcome to the best five-star deluxe hotel in New York. Hotel elementum sesue the aucan volutpat.</div>
 							<ul className="social-icon-two">
