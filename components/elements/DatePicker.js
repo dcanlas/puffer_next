@@ -1,5 +1,3 @@
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker as DatePickerMUI } from "@mui/x-date-pickers/DatePicker";
 
 const styles = {
@@ -28,9 +26,5 @@ const styles = {
 };
 
 export default function DatePicker() {
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePickerMUI sx={styles} />
-    </LocalizationProvider>
-  );
+  return <DatePickerMUI sx={styles} />;
 }
