@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import DatePicker from "../elements/DatePicker";
+
 export default function Lookup() {
   return (
     <div className="checkout-form-section wow slideInUp">
@@ -9,13 +11,7 @@ export default function Lookup() {
             <h6>Check in</h6>
 
             <div className="chk-field">
-              <input
-                className="date-pick"
-                type="text"
-                placeholder="20 June, 2023"
-              />
-
-              <i className="fa fa-calendar"></i>
+              <DatePicker />
             </div>
           </div>
 
@@ -23,13 +19,7 @@ export default function Lookup() {
             <h6>Check out</h6>
 
             <div className="chk-field">
-              <input
-                className="date-pick"
-                type="text"
-                placeholder="20 June, 2023"
-              />
-
-              <i className="fa fa-calendar"></i>
+              <DatePicker />
             </div>
           </div>
 
