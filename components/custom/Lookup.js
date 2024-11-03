@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Link from "next/link";
 
 import DatePicker, { today } from "../elements/DatePicker";
 
@@ -9,6 +8,21 @@ export default function Lookup() {
 
   console.log("checkIn", checkIn); // delete
   console.log("checkOut", checkOut); // delete
+
+  const handleSubmit = () => {
+    if (checkIn && checkOut) {
+      const form = {
+        checkIn,
+        checkOut,
+      };
+
+      console.log("submitted", form); // delete
+
+      alert("Form submitted! Check console for details."); // delete or convert into validation toast
+    } else {
+      alert("Complete availability lookup form!"); // delete or convert into validation toast
+    }
+  };
 
   return (
     <div className="checkout-form-section wow slideInUp">
@@ -53,9 +67,9 @@ export default function Lookup() {
             </div>
           </div>
 
-          <Link href="" className="theme-btn btn-style-one">
+          <button className="theme-btn btn-style-one" onClick={handleSubmit}>
             <span className="btn-title">check now</span>
-          </Link>
+          </button>
         </div>
       </div>
     </div>
