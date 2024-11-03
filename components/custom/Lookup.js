@@ -1,6 +1,22 @@
 import { useState } from "react";
 
 import DatePicker, { today } from "../elements/DatePicker";
+import Select from "../elements/Select";
+
+const rooms = [
+  {
+    label: "Standard",
+    value: 1,
+  },
+  {
+    label: "Deluxe",
+    value: 2,
+  },
+  {
+    label: "Suite",
+    value: 3,
+  },
+];
 
 export default function Lookup() {
   const [checkIn, setCheckIn] = useState(today);
@@ -9,11 +25,22 @@ export default function Lookup() {
   console.log("checkIn", checkIn); // delete
   console.log("checkOut", checkOut); // delete
 
+  const [room, setRoom] = useState(1);
+
+  console.log("room", room); // delete
+
+  const handleSelect = ({ target }) => {
+    const { value } = target;
+
+    setRoom(value);
+  };
+
   const handleSubmit = () => {
-    if (checkIn && checkOut) {
+    if (checkIn && checkOut && room) {
       const form = {
         checkIn,
         checkOut,
+        room,
       };
 
       console.log("submitted", form); // delete
@@ -56,14 +83,7 @@ export default function Lookup() {
             <h6>Room</h6>
 
             <div className="chk-field">
-              <i className="fa fa-angle-down"></i>
-
-              <select>
-                <option>Standard Room Size </option>
-                <option>Standard Room Size </option>
-                <option>Standard Room Size </option>
-                <option>Standard Room Size </option>
-              </select>
+              <Select options={rooms} value={room} onChange={handleSelect} />
             </div>
           </div>
 
