@@ -1,8 +1,15 @@
+import { useState } from "react";
 import Link from "next/link";
 
-import DatePicker from "../elements/DatePicker";
+import DatePicker, { today } from "../elements/DatePicker";
 
 export default function Lookup() {
+  const [checkIn, setCheckIn] = useState(today);
+  const [checkOut, setCheckOut] = useState(null);
+
+  console.log("checkIn", checkIn); // delete
+  console.log("checkOut", checkOut); // delete
+
   return (
     <div className="checkout-form-section wow slideInUp">
       <div className="auto-container">
@@ -11,7 +18,11 @@ export default function Lookup() {
             <h6>Check in</h6>
 
             <div className="chk-field">
-              <DatePicker />
+              <DatePicker
+                defaultValue="today"
+                value={checkIn}
+                onChange={setCheckIn}
+              />
             </div>
           </div>
 
@@ -19,7 +30,11 @@ export default function Lookup() {
             <h6>Check out</h6>
 
             <div className="chk-field">
-              <DatePicker defaultValue="" />
+              <DatePicker
+                defaultValue=""
+                value={checkOut}
+                onChange={setCheckOut}
+              />
             </div>
           </div>
 
