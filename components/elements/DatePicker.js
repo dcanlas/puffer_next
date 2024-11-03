@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 import { DatePicker as DatePickerMUI } from "@mui/x-date-pickers/DatePicker";
 
 const styles = {
@@ -25,6 +27,10 @@ const styles = {
   },
 };
 
-export default function DatePicker() {
-  return <DatePickerMUI sx={styles} />;
+export default function DatePicker(props) {
+  const { defaultValue, ...rest } = props;
+
+  return (
+    <DatePickerMUI defaultValue={dayjs(defaultValue)} sx={styles} {...rest} />
+  );
 }

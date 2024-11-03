@@ -19,7 +19,7 @@ export default function Lookup() {
             <h6>Check out</h6>
 
             <div className="chk-field">
-              <DatePicker />
+              <DatePicker defaultValue="" />
             </div>
           </div>
 
