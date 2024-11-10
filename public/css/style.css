@@ -39,6 +39,13 @@ License: copyright commercial
 @import url("flaticon.css");
 @import url("tm-bs-mp.css");
 @import url("tm-utility-classes.css");
+
+/* Load own fonts */
+@font-face {
+  font-family: "FinkHeavy";
+  src: url("../fonts/FinkHeavy-Medium.otf") format("opentype");
+}
+
 :root {
   --theme-color-light: #ffffff;
   --theme-color-dark: #222222;
@@ -56,7 +63,7 @@ License: copyright commercial
   --review-color: #ffc737;
   --link-color: var(--headings-color);
   --link-hover-color: var(--headings-color);
-  --title-font: "Gilda Display", serif;
+  --title-font: "FinkHeavy", "Gilda Display", serif;
   --text-font: "Barlow", sans-serif;
   --text-font2: "Barlow Condensed", sans-serif;
   --body-font-size: 16px;

@@ -2,7 +2,6 @@ import Link from 'next/link';
 import React from 'react';
 import BackToTop from '../elements/BackToTop'
 import Image from 'next/image'
-import LogoDark from './../../public/images/logo-2.png';
 import Logo from './../../public/images/resort-logo-horizontal.png';
 const Footer1 = () => {
     return (
