@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import DatePicker, { today } from "../elements/DatePicker";
 import Select from "../elements/Select";
+import { getCustomerId } from "@/services/SmoobuService";
 
 const rooms = [
   {
@@ -21,6 +22,16 @@ const rooms = [
 export default function Lookup() {
   const [checkIn, setCheckIn] = useState(today);
   const [checkOut, setCheckOut] = useState(null);
+
+  // testing the service
+  useEffect(() => {
+    async function test() {
+      const customerId = await getCustomerId();
+      console.log("customerId", customerId);
+    }
+
+    test();
+  }, []);
 
   console.log("checkIn", checkIn); // delete
   console.log("checkOut", checkOut); // delete

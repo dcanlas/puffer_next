@@ -35,42 +35,42 @@ const sliderDetails = [
     subtitle: "Beachfront Resort",
     linkTo: null,
   },
-  // {
-  //   imgSrc: 'images/banner/front-day-1.jpg',
-  //   alt: 'Picture from beach towards resort',
-  //   subtitle: 'Comfortable and Peaceful Stay',
-  //   linkTo: null
-  // },
-  // {
-  //   imgSrc: 'images/banner/day-mid-2.jpg',
-  //   alt: 'Picture from beach towards resort',
-  //   subtitle: 'Feel the Sand Between your Toes',
-  //   linkTo: null
-  // },
-  // {
-  //   imgSrc: 'images/banner/secondfloor-one.jpg',
-  //   alt: 'Picture from beach towards resort',
-  //   subtitle: 'Activities for All',
-  //   linkTo: null
-  // },
-  // {
-  //   imgSrc: 'images/banner/back-angled-1.jpg',
-  //   alt: 'Picture from beach towards resort',
-  //   subtitle: 'Soak in the Sun',
-  //   linkTo: null
-  // },
-  // {
-  //   imgSrc: 'images/banner/front-night.jpg',
-  //   alt: 'Picture from beach towards resort',
-  //   subtitle: 'Sing the Night Away',
-  //   linkTo: null
-  // },
-  // {
-  //   imgSrc: 'images/banner/secondfloor-two.jpg',
-  //   alt: 'Picture from beach towards resort',
-  //   subtitle: 'A Slice of Paradise',
-  //   linkTo: null
-  // },
+  {
+    imgSrc: 'images/banner/front-day-1.jpg',
+    alt: 'Picture from beach towards resort',
+    subtitle: 'Comfortable and Peaceful Stay',
+    linkTo: null
+  },
+  {
+    imgSrc: 'images/banner/day-mid-2.jpg',
+    alt: 'Picture from beach towards resort',
+    subtitle: 'Feel the Sand Between your Toes',
+    linkTo: null
+  },
+  {
+    imgSrc: 'images/banner/secondfloor-one.jpg',
+    alt: 'Picture from beach towards resort',
+    subtitle: 'Activities for All',
+    linkTo: null
+  },
+  {
+    imgSrc: 'images/banner/back-angled-1.jpg',
+    alt: 'Picture from beach towards resort',
+    subtitle: 'Soak in the Sun',
+    linkTo: null
+  },
+  {
+    imgSrc: 'images/banner/front-night.jpg',
+    alt: 'Picture from beach towards resort',
+    subtitle: 'Sing the Night Away',
+    linkTo: null
+  },
+  {
+    imgSrc: 'images/banner/secondfloor-two.jpg',
+    alt: 'Picture from beach towards resort',
+    subtitle: 'A Slice of Paradise',
+    linkTo: null
+  },
 ];
 
 export default function Slider1() {
