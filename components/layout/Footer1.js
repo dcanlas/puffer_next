@@ -88,14 +88,6 @@ const Footer1 = () => {
 			</div>
 		</div>
 
-    <div className="footer-bottom">
-      <div className="auto-container">
-        <div className="inner-container">
-          <div className="copyright-text">&copy; Copyright Reserved by kodesolution.com</div>
-          <BackToTop />
-        </div>
-      </div>
-    </div>
   </footer>
         </>
     );
