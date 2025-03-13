@@ -23,12 +23,7 @@ export default function RoomDetails({ room }) {
               <div className="room-details__left">
                 <div className="wrapper">
                   <h3>Description of Room</h3>
-                  <p className="text">
-                    Mauris non dignissim purus, ac commodo diam. Donec sit amet lacinia nulla. Aliquam quis purus in
-                    justo pulvinar tempor. Aliquam tellus nulla, sollicitudin at euismod nec, feugiat at nisi. Quisque
-                    vitae odio nec lacus interdum tempus. Phasellus a rhoncus erat. Vivamus vel eros vitae est aliquet
-                    pellentesque vitae et nunc. Sed vitae leo vitae nisl pellentesque semper.
-                  </p>
+                  <p className="text">{room.description}</p>
                   <div className="row justify-content-center">
                     <div className="col-xl-12">
                       <div className="room-details__content-right mb-40 mt-20">
@@ -39,31 +34,25 @@ export default function RoomDetails({ room }) {
                               <h6 className="title">600Sq</h6>
                             </div>
                             <div className="col-6 col-md-3">
-                              <p className="text mb-0">Rooms Bed</p>
-                              <h6 className="title">2 Single Bed</h6>
+                              <p className="text mb-0">Beds</p>
+                              <h6 className="title">{room.beds}</h6>
                             </div>
                             <div className="col-6 col-md-3">
                               <p className="text mb-0">Occupancy</p>
-                              <h6 className="title">Three Persons</h6>
+                              <h6 className="title">{room.occupancy}</h6>
                             </div>
                             <div className="col-6 col-md-3">
                               <p className="text mb-0">View</p>
-                              <h6 className="title">Sea View</h6>
+                              <h6 className="title">{room.view}</h6>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <p className="text">
-                    Mauris non dignissim purus, ac commodo diam. Donec sit amet lacinia nulla. Aliquam quis purus in
-                    justo pulvinar tempor. Aliquam tellus nulla, sollicitudin at euismod nec, feugiat at nisi. Quisque
-                    vitae odio nec lacus interdum tempus. Phasellus a rhoncus erat. Vivamus vel eros vitae est aliquet
-                    pellentesque vitae et nunc. Sed vitae leo vitae nisl pellentesque semper.
-                  </p>
                 </div>
                 <div className="mt-40">
-                  <h4>Room Facilities</h4>
+                  <h3>Room Amenities</h3>
                   <div className="row room-facility-list mb-40">
                     <div className="col-sm-6 col-xl-4">
                       <div className="list-one d-flex align-items-center me-sm-4 mb-3">
