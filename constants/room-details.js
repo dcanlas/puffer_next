@@ -1,6 +1,6 @@
 export const ROOM_DETAILS = [
   {
-    type: "family-room",
+    type: "family room",
     name: "Family Room with A/C",
     description: `
     This room is our biggest and can host up to 6 guests and you have the option to add an extra mattress.
@@ -12,6 +12,8 @@ export const ROOM_DETAILS = [
     view: "Sea View",
     size: "tbd",
   },
-  { type: "standard-room", name: "Standard Room with A/C", description: "...", price: 30 },
-  { type: "budget-room", name: "Budget Room with Fan", description: "...", price: 30 },
+  { type: "standard room", name: "Standard Room with A/C", description: "...", price: 30 },
+  { type: "budget room", name: "Budget Room with Fan", description: "...", price: 30 },
+  { type: "family fan 6", name: "Budget Room with Fan", description: "...", price: 30 },
+  { type: "family fan 5", name: "Budget Room with Fan", description: "...", price: 30 },
 ];
