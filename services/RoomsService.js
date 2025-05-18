@@ -23,9 +23,11 @@ class RoomsService {
     try {
       const response = await makeGetQuery("/api/apartments");
       this.rawRooms = response.apartments;
-      ROOM_DETAILS.forEach((room) => {
+      ROOM_DETAILS.forEach(async (room) => {
         const roomCopy = { ...room };
-        roomCopy.propertyIds = this.rawRooms.filter((r) => r.name.includes(room.type)).map((r) => r.id);
+        // change the below to be a  "properties" array where each item will call the getDetailsById method
+        const propertyIds = this.rawRooms.filter((r) => r.name.includes(room.smoobuType)).map((r) => r.id);
+        roomCopy.properties = await Promise.all(propertyIds.map((id) => this.getDetailsById(id)));
         this.roomsByType[room.type] = roomCopy;
       });
       this.isInitialized = true;
@@ -38,7 +40,8 @@ class RoomsService {
   async getDetailsById(roomId) {
     try {
       const response = await makeGetQuery(`/api/apartments/${roomId}`);
-      return response;
+      const { type, ...roomDetails } = response;
+      return roomDetails;
     } catch (error) {
       console.error(error);
       throw error;
