@@ -28,7 +28,7 @@ const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
               </nav>
             </div>
             <div className="outer-box">
-              <Link href="/page-contact" className="header-btn">
+              <Link href="/check-availability" className="header-btn">
                 Book Now
               </Link>
               <div className="mobile-nav-toggler" onClick={handleMobileMenu}>
@@ -43,7 +43,7 @@ const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
             <div className="upper-box">
               <div className="nav-logo">
                 <Link href="/">
-                <Image width={150} height={50} src={Logo} alt="Puffer Isle Resort Logo" />
+                  <Image width={150} height={50} src={Logo} alt="Puffer Isle Resort Logo" />
                 </Link>
               </div>
               <div className="close-btn" onClick={handleMobileMenu}>
@@ -56,42 +56,32 @@ const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
                 <div className="contact-info-box">
                   <i className="icon lnr-icon-phone-handset" />
                   <span className="title">Call Now</span>
-                  <Link href="tel:+92880098670">+92 (8800) - 98670</Link>
+                  <Link href="tel:+639123456789">+63 (912) 345-6789</Link>
                 </div>
               </li>
               <li>
                 <div className="contact-info-box">
                   <span className="icon lnr-icon-envelope1" />
                   <span className="title">Send Email</span>
-                  <Link href="mailto:help@company.com">help@company.com</Link>
+                  <Link href="mailto:bookings@pufferisle.com">bookings@pufferisle.com</Link>
                 </div>
               </li>
               <li>
                 <div className="contact-info-box">
                   <span className="icon lnr-icon-clock" />
-                  <span className="title">Send Email</span>
-                  Mon - Sat 8:00 - 6:30, Sunday - CLOSED
+                  <span className="title">Opening Hours</span>
+                  Check-in: 2:00 PM, Check-out: 12:00 PM
                 </div>
               </li>
             </ul>
             <ul className="social-links">
               <li>
-                <Link href="#">
-                  <i className="fab fa-twitter" />
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
+                <Link href="https://facebook.com/pufferisle" target="_blank">
                   <i className="fab fa-facebook-f" />
                 </Link>
               </li>
               <li>
-                <Link href="#">
-                  <i className="fab fa-pinterest" />
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
+                <Link href="https://instagram.com/pufferisle" target="_blank">
                   <i className="fab fa-instagram" />
                 </Link>
               </li>
@@ -119,7 +109,7 @@ const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
             <div className="inner-container">
               <div className="logo">
                 <Link href="/">
-                <Image width={150} height={50} src={Logo} alt="Puffer Isle Resort Logo" />
+                  <Image width={150} height={50} src={Logo} alt="Puffer Isle Resort Logo" />
                 </Link>
               </div>
               <div className="nav-outer">

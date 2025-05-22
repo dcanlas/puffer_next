@@ -16,236 +16,70 @@ export default function RoomsGrid() {
   useEffect(() => {
     if (isReady) {
       const theRooms = roomsService.getRoomsByType();
-      console.log("the rooms", JSON.stringify(theRooms, null, 2));
       setRooms(theRooms);
     }
-  }, [isReady]);
+  }, [isReady, roomsService]);
 
-  return (
-    <>
-      <section className="rooms-section pb-100">
-        <div className="auto-container">
-          <div className="sec-title text-center wow fadeInUp">
-            <h2>Our Rooms</h2>
+  const renderRoomBlock = (room, index) => {
+    if (!room) return null;
+
+    return (
+      <div key={room.id} className="room-block col-lg-6 col-md-6 col-sm-12">
+        <div className="inner-box wow fadeIn" data-wow-delay={`${index * 100}ms`}>
+          <div className="image-box">
+            <figure className="image-2 overlay-anim">
+              <img src={room.image || "images/resource/room-1.jpg"} alt={room.name} />
+            </figure>
           </div>
-          <div className="row">
-            <div className="room-block col-lg-6 col-md-6 col-sm-12">
-              <div className="inner-box wow fadeIn">
-                <div className="image-box">
-                  <figure className="image-2 overlay-anim">
-                    <img src="images/resource/room-1.jpg" alt="" />
-                  </figure>
-                </div>
-                <div className="content-box">
-                  <h6 className="title">
-                    <Link href="/room-details">Junior Suite</Link>
-                  </h6>
-                  <span className="price">150$ / NIGHT</span>
-                </div>
-                <div className="box-caption">
-                  <Link href="/room-details" title="" className="book-btn">
-                    book now
-                  </Link>
-                  <ul className="bx-links">
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-wifi"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-bed"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-bath"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-shower"></i>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="room-block col-lg-6 col-md-6 col-sm-12">
-              <div className="inner-box wow fadeIn" data-wow-delay="200ms">
-                <div className="image-box">
-                  <figure className="image-2 overlay-anim">
-                    <img src="images/resource/room-2.jpg" alt="" />
-                  </figure>
-                </div>
-                <div className="content-box">
-                  <h6 className="title">
-                    <Link href="/room-details">Family Room</Link>
-                  </h6>
-                  <span className="price">200$ / NIGHT</span>
-                </div>
-                <div className="box-caption">
-                  <Link href="/room-details" title="" className="book-btn">
-                    book now
-                  </Link>
-                  <ul className="bx-links">
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-wifi"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-bed"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-bath"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-shower"></i>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="room-block col-lg-4 col-md-4 col-sm-12">
-              <div className="inner-box wow fadeIn" data-wow-delay="300ms">
-                <div className="image-box">
-                  <figure className="image-2 overlay-anim">
-                    <img src="images/resource/room-2.jpg" alt="" />
-                  </figure>
-                </div>
-                <div className="content-box">
-                  <h6 className="title">
-                    <Link href="/room-details">Double Room</Link>
-                  </h6>
-                  <span className="price">250$ / NIGHT</span>
-                </div>
-                <div className="box-caption">
-                  <Link href="/room-details" title="" className="book-btn">
-                    book now
-                  </Link>
-                  <ul className="bx-links">
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-wifi"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-bed"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-bath"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-shower"></i>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="room-block col-lg-4 col-md-4 col-sm-12">
-              <div className="inner-box wow fadeIn" data-wow-delay="300ms">
-                <div className="image-box">
-                  <figure className="image-2 overlay-anim">
-                    <img src="images/resource/room-2.jpg" alt="" />
-                  </figure>
-                </div>
-                <div className="content-box">
-                  <h6 className="title">
-                    <Link href="/room-details">Double Room</Link>
-                  </h6>
-                  <span className="price">250$ / NIGHT</span>
-                </div>
-                <div className="box-caption">
-                  <Link href="/room-details" title="" className="book-btn">
-                    book now
-                  </Link>
-                  <ul className="bx-links">
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-wifi"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-bed"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-bath"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-shower"></i>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="room-block col-lg-4 col-md-4 col-sm-12">
-              <div className="inner-box wow fadeIn" data-wow-delay="300ms">
-                <div className="image-box">
-                  <figure className="image-2 overlay-anim">
-                    <img src="images/resource/room-2.jpg" alt="" />
-                  </figure>
-                </div>
-                <div className="content-box">
-                  <h6 className="title">
-                    <Link href="/room-details">Double Room</Link>
-                  </h6>
-                  <span className="price">250$ / NIGHT</span>
-                </div>
-                <div className="box-caption">
-                  <Link href="/room-details" title="" className="book-btn">
-                    book now
-                  </Link>
-                  <ul className="bx-links">
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-wifi"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-bed"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-bath"></i>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/room-details" title="">
-                        <i className="fa fa-shower"></i>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+          <div className="content-box">
+            <h6 className="title">
+              <Link href={`/room-details/${room.id}`}>{room.name}</Link>
+            </h6>
+            <span className="price">{room.maxOccupancy} guests</span>
+          </div>
+          <div className="box-caption">
+            <Link href={`/room-details/${room.id}`} className="book-btn">
+              view details
+            </Link>
+            <ul className="bx-links">
+              <li>
+                <Link href={`/room-details/${room.id}`}>
+                  <i className="fa fa-wifi"></i>
+                </Link>
+              </li>
+              <li>
+                <Link href={`/room-details/${room.id}`}>
+                  <i className="fa fa-bed"></i>
+                </Link>
+              </li>
+              <li>
+                <Link href={`/room-details/${room.id}`}>
+                  <i className="fa fa-bath"></i>
+                </Link>
+              </li>
+              <li>
+                <Link href={`/room-details/${room.id}`}>
+                  <i className="fa fa-shower"></i>
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    );
+  };
+
+  return (
+    <section className="rooms-section pb-100">
+      <div className="auto-container">
+        <div className="sec-title text-center wow fadeInUp">
+          <h2>Our Rooms</h2>
+        </div>
+        <div className="row">
+          {isReady && rooms.ac && rooms.ac.map((room, index) => renderRoomBlock(room, index))}
+          {isReady && rooms.fan && rooms.fan.map((room, index) => renderRoomBlock(room, index))}
+        </div>
+      </div>
+    </section>
   );
 }
