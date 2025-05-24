@@ -1,131 +1,209 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import {
+  AppBar,
+  Toolbar,
+  Container,
+  Box,
+  Button,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+  TextField,
+  InputAdornment,
+  useScrollTrigger,
+  Slide,
+  styled,
+} from "@mui/material";
+import {
+  Menu as MenuIcon,
+  Close as CloseIcon,
+  Phone as PhoneIcon,
+  Email as EmailIcon,
+  AccessTime as AccessTimeIcon,
+  Search as SearchIcon,
+} from "@mui/icons-material";
 import MobileMenu from "./MobileMenu";
 import NavLinks from "./NavLinks";
 import Logo from "./../../public/images/resort-logo-horizontal.png";
 
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
+  backgroundColor: "transparent",
+  boxShadow: "none",
+  transition: "all 0.3s ease",
+  "&.scrolled": {
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+  },
+}));
+
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+  justifyContent: "space-between",
+  padding: theme.spacing(2, 0),
+}));
+
+const LogoBox = styled(Box)({
+  display: "flex",
+  alignItems: "center",
+});
+
+const NavBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: theme.spacing(4),
+}));
+
+const ContactInfoBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: theme.spacing(1),
+  marginBottom: theme.spacing(2),
+}));
+
+const SocialLinks = styled(Box)(({ theme }) => ({
+  display: "flex",
+  gap: theme.spacing(2),
+  marginTop: theme.spacing(2),
+}));
+
 const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
+  const trigger = useScrollTrigger();
+
   return (
     <>
-      <header
-        className={`main-header header-style-one ${scroll ? "fixed-header" : ""} ${
-          searchToggle ? "moblie-search-active" : ""
-        }`}
+      <Slide appear={false} direction="down" in={!trigger}>
+        <StyledAppBar position="fixed" className={scroll ? "scrolled" : ""}>
+          <Container maxWidth="lg">
+            <StyledToolbar>
+              <LogoBox>
+                <Link href="/">
+                  <Image width={150} height={50} src={Logo} alt="Puffer Isle Resort Logo" />
+                </Link>
+              </LogoBox>
+
+              <NavBox>
+                <Box sx={{ display: { xs: "none", md: "block" } }}>
+                  <NavLinks />
+                </Box>
+                <Button
+                  component={Link}
+                  href="/check-availability"
+                  variant="contained"
+                  color="secondary"
+                  sx={{ display: { xs: "none", md: "block" } }}
+                >
+                  Book Now
+                </Button>
+                <IconButton color="inherit" onClick={handleMobileMenu} sx={{ display: { md: "none" } }}>
+                  <MenuIcon />
+                </IconButton>
+              </NavBox>
+            </StyledToolbar>
+          </Container>
+        </StyledAppBar>
+      </Slide>
+
+      <Drawer
+        anchor="right"
+        open={searchToggle}
+        onClose={handleMobileMenu}
+        PaperProps={{
+          sx: {
+            width: { xs: "100%", sm: 400 },
+            p: 3,
+          },
+        }}
       >
-        <div className="auto-container">
-          <div className="main-box">
-            <div className="logo-box">
-              <div className="logo">
-                <Link href="/">
-                  <Image width={150} height={50} src={Logo} alt="Puffer Isle Resort Logo" />
+        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
+          <Link href="/">
+            <Image width={150} height={50} src={Logo} alt="Puffer Isle Resort Logo" />
+          </Link>
+          <IconButton onClick={handleMobileMenu}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
+        <MobileMenu />
+
+        <List>
+          <ListItem>
+            <ContactInfoBox>
+              <PhoneIcon />
+              <Box>
+                <Typography variant="subtitle2">Call Now</Typography>
+                <Link href="tel:+639123456789" style={{ textDecoration: "none", color: "inherit" }}>
+                  <Typography>+63 (912) 345-6789</Typography>
                 </Link>
-              </div>
-            </div>
-            <div className="nav-outer">
-              <nav className="nav main-menu">
-                <NavLinks />
-              </nav>
-            </div>
-            <div className="outer-box">
-              <Link href="/check-availability" className="header-btn">
-                Book Now
-              </Link>
-              <div className="mobile-nav-toggler" onClick={handleMobileMenu}>
-                <span className="icon lnr-icon-bars" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="mobile-menu">
-          <div className="menu-backdrop" onClick={handleMobileMenu} />
-          <nav className="menu-box">
-            <div className="upper-box">
-              <div className="nav-logo">
-                <Link href="/">
-                  <Image width={150} height={50} src={Logo} alt="Puffer Isle Resort Logo" />
+              </Box>
+            </ContactInfoBox>
+          </ListItem>
+          <ListItem>
+            <ContactInfoBox>
+              <EmailIcon />
+              <Box>
+                <Typography variant="subtitle2">Send Email</Typography>
+                <Link href="mailto:bookings@pufferisle.com" style={{ textDecoration: "none", color: "inherit" }}>
+                  <Typography>bookings@pufferisle.com</Typography>
                 </Link>
-              </div>
-              <div className="close-btn" onClick={handleMobileMenu}>
-                <i className="icon fa fa-times" />
-              </div>
-            </div>
-            <MobileMenu />
-            <ul className="contact-list-one">
-              <li>
-                <div className="contact-info-box">
-                  <i className="icon lnr-icon-phone-handset" />
-                  <span className="title">Call Now</span>
-                  <Link href="tel:+639123456789">+63 (912) 345-6789</Link>
-                </div>
-              </li>
-              <li>
-                <div className="contact-info-box">
-                  <span className="icon lnr-icon-envelope1" />
-                  <span className="title">Send Email</span>
-                  <Link href="mailto:bookings@pufferisle.com">bookings@pufferisle.com</Link>
-                </div>
-              </li>
-              <li>
-                <div className="contact-info-box">
-                  <span className="icon lnr-icon-clock" />
-                  <span className="title">Opening Hours</span>
-                  Check-in: 2:00 PM, Check-out: 12:00 PM
-                </div>
-              </li>
-            </ul>
-            <ul className="social-links">
-              <li>
-                <Link href="https://facebook.com/pufferisle" target="_blank">
-                  <i className="fab fa-facebook-f" />
-                </Link>
-              </li>
-              <li>
-                <Link href="https://instagram.com/pufferisle" target="_blank">
-                  <i className="fab fa-instagram" />
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div className="search-popup">
-          <span className="search-back-drop" />
-          <button className="close-search" onClick={handleToggle}>
-            <span className="fa fa-times" />
-          </button>
-          <div className="search-inner">
-            <form method="post" action="#">
-              <div className="form-group">
-                <input type="search" name="search-field" defaultValue="" placeholder="Search..." required />
-                <button type="submit">
-                  <i className="fa fa-search" />
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div className={`sticky-header ${scroll ? "fixed-header animated slideInDown" : ""}`}>
-          <div className="auto-container">
-            <div className="inner-container">
-              <div className="logo">
-                <Link href="/">
-                  <Image width={150} height={50} src={Logo} alt="Puffer Isle Resort Logo" />
-                </Link>
-              </div>
-              <div className="nav-outer">
-                <nav className="main-menu">
-                  <div className="navbar-collapse show collapse clearfix">
-                    <NavLinks />
-                  </div>
-                </nav>
-                <div className="mobile-nav-toggler" onClick={handleMobileMenu}>
-                  <span className="icon lnr-icon-bars" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+              </Box>
+            </ContactInfoBox>
+          </ListItem>
+          <ListItem>
+            <ContactInfoBox>
+              <AccessTimeIcon />
+              <Box>
+                <Typography variant="subtitle2">Opening Hours</Typography>
+                <Typography>Check-in: 2:00 PM, Check-out: 12:00 PM</Typography>
+              </Box>
+            </ContactInfoBox>
+          </ListItem>
+        </List>
+
+        <SocialLinks>
+          <IconButton component={Link} href="https://facebook.com/pufferisle" target="_blank">
+            <i className="fab fa-facebook-f" />
+          </IconButton>
+          <IconButton component={Link} href="https://instagram.com/pufferisle" target="_blank">
+            <i className="fab fa-instagram" />
+          </IconButton>
+        </SocialLinks>
+      </Drawer>
+
+      <Drawer
+        anchor="top"
+        open={searchToggle}
+        onClose={handleToggle}
+        PaperProps={{
+          sx: {
+            p: 3,
+            backgroundColor: "background.paper",
+          },
+        }}
+      >
+        <Box sx={{ position: "relative" }}>
+          <IconButton onClick={handleToggle} sx={{ position: "absolute", right: 0, top: 0 }}>
+            <CloseIcon />
+          </IconButton>
+          <TextField
+            fullWidth
+            placeholder="Search..."
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton type="submit">
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+      </Drawer>
     </>
   );
 };

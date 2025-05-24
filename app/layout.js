@@ -1,7 +1,9 @@
+import ThemeRegistry from "./ThemeRegistry";
+
 export const metadata = {
-  title: 'Puffer Isle Resort',
-  description: 'Welcome to Puffer Isle Resort',
-}
+  title: "Puffer Resort",
+  description: "Your perfect beachfront getaway",
+};
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -10,7 +12,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ThemeRegistry>{children}</ThemeRegistry>
+      </body>
     </html>
-  )
+  );
 }
