@@ -127,6 +127,37 @@ const sliderDetails = [
   },
 ];
 
+const Headline = styled(Typography)(({ theme }) => ({
+  fontFamily: "Playfair Display, serif",
+  fontWeight: 400,
+  fontSize: "clamp(2.5rem, 7vw, 5rem)",
+  lineHeight: 1.1,
+  color: "#fff",
+  textShadow: "0 4px 24px rgba(0,0,0,0.4)",
+  marginBottom: theme.spacing(2),
+}));
+
+const Subtitle = styled(Typography)(({ theme }) => ({
+  fontFamily: "inherit",
+  fontWeight: 400,
+  fontSize: "1.25rem",
+  color: "#fff",
+  marginBottom: theme.spacing(2),
+  textShadow: "0 2px 8px rgba(0,0,0,0.3)",
+}));
+
+const Description = styled(Typography)(({ theme }) => ({
+  fontFamily: "inherit",
+  fontWeight: 300,
+  fontSize: "1rem",
+  color: "#fff",
+  marginTop: theme.spacing(2),
+  textShadow: "0 2px 8px rgba(0,0,0,0.3)",
+  maxWidth: 600,
+  marginLeft: "auto",
+  marginRight: "auto",
+}));
+
 export default function Slider1() {
   return (
     <BannerSection>
@@ -135,22 +166,12 @@ export default function Slider1() {
           <SwiperSlide key={idx}>
             <SlideImage src={item.imgSrc} alt={item.alt} />
             <ContentBox>
-              <Typography variant="h1" component="h1" data-animation-in="fadeInUp" data-delay-in="0.3">
-                {item.subtitle}
-              </Typography>
-              {item.linkTo && (
-                <Button
-                  component={Link}
-                  href="/page-about"
-                  variant="contained"
-                  color="secondary"
-                  size="large"
-                  data-animation-in="fadeInUp"
-                  data-delay-in="0.5"
-                >
-                  rooms & suites
-                </Button>
-              )}
+              <Subtitle>Winner of Best Island Retreat 2024</Subtitle>
+              <Headline component="h1">Escape into a World of Sophistication</Headline>
+              <Description>
+                Escape the ordinary and indulge in the art of fine living at Puffer Isle – a sanctuary of timeless
+                luxury nestled on a secluded island paradise.
+              </Description>
             </ContentBox>
           </SwiperSlide>
         ))}

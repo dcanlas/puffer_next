@@ -13,23 +13,10 @@ import { useEffect, useState } from "react";
 import CustomProvider from "@/components/custom/Provider";
 
 function MyApp({ Component, pageProps }) {
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
   return (
-    <>
-      {!loading ? (
-        <CustomProvider>
-          <Component {...pageProps} />
-        </CustomProvider>
-      ) : (
-        <div className="preloader"></div>
-      )}
-    </>
+    <CustomProvider>
+      <Component {...pageProps} />
+    </CustomProvider>
   );
 }
 
