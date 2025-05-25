@@ -1,5 +1,3 @@
-// make this page the same layout as the room details page
-
 import Layout from "@/components/layout/Layout";
 import { useState, useEffect, useCallback } from "react";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -7,26 +5,17 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { findAvailableRoomCombinations } from "@/services/RatesService";
-import { useRoomsService } from "@/hooks/useRoomsService";
+import { useRoomsContext } from "@/hooks/RoomsContext";
 import { Box, Container, Grid, Typography, TextField, Button, Alert } from "@mui/material";
 
 export default function CheckAvailability() {
-  const { roomsService, isReady } = useRoomsService();
+  const { roomsService, isReady } = useRoomsContext();
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
   const [partySize, setPartySize] = useState(1);
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
   const [error, setError] = useState(null);
-
-  // Cleanup function to handle component unmounting
-  useEffect(() => {
-    return () => {
-      setSearchResults(null);
-      setError(null);
-      setIsSearching(false);
-    };
-  }, []);
 
   const handleSearch = useCallback(
     async (e) => {

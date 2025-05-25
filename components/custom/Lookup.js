@@ -27,18 +27,11 @@ export default function Lookup() {
   useEffect(() => {
     async function test() {
       const customerId = await getCustomerId();
-      console.log("customerId", customerId);
     }
-
     test();
   }, []);
 
-  console.log("checkIn", checkIn); // delete
-  console.log("checkOut", checkOut); // delete
-
   const [room, setRoom] = useState(1);
-
-  console.log("room", room); // delete
 
   const handleSelect = ({ target }) => {
     const { value } = target;
@@ -54,11 +47,9 @@ export default function Lookup() {
         room,
       };
 
-      console.log("submitted", form); // delete
-
-      alert("Form submitted! Check console for details."); // delete or convert into validation toast
+      alert("Form submitted! Check console for details.");
     } else {
-      alert("Complete availability lookup form!"); // delete or convert into validation toast
+      alert("Complete availability lookup form!");
     }
   };
 
@@ -70,11 +61,7 @@ export default function Lookup() {
             <h6>Check in</h6>
 
             <div className="chk-field">
-              <DatePicker
-                defaultValue="today"
-                value={checkIn}
-                onChange={setCheckIn}
-              />
+              <DatePicker defaultValue="today" value={checkIn} onChange={setCheckIn} />
             </div>
           </div>
 
@@ -82,11 +69,7 @@ export default function Lookup() {
             <h6>Check out</h6>
 
             <div className="chk-field">
-              <DatePicker
-                defaultValue=""
-                value={checkOut}
-                onChange={setCheckOut}
-              />
+              <DatePicker defaultValue="" value={checkOut} onChange={setCheckOut} />
             </div>
           </div>
 

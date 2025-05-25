@@ -25,7 +25,6 @@ class RoomsService {
       this.rawRooms = response.apartments;
       ROOM_DETAILS.forEach(async (room) => {
         const roomCopy = { ...room };
-        // change the below to be a  "properties" array where each item will call the getDetailsById method
         const propertyIds = this.rawRooms.filter((r) => r.name.includes(room.smoobuType)).map((r) => r.id);
         roomCopy.properties = await Promise.all(propertyIds.map((id) => this.getDetailsById(id)));
         this.roomsByType[room.type] = roomCopy;
