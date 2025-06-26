@@ -5,35 +5,32 @@ import { Box, Container, Grid, Typography, Card, CardContent, CardActionArea } f
 import { styled } from "@mui/material/styles";
 
 const Section = styled(Box)(({ theme }) => ({
-  background: "#f8f6ed",
+  background: `linear-gradient(135deg, #fef9e7 0%, ${theme.palette.background.default} 100%)`,
   padding: theme.spacing(8, 0),
 }));
 
 const Title = styled(Typography)(({ theme }) => ({
-  fontFamily: "Playfair Display, serif",
-  fontWeight: 400,
-  fontSize: "clamp(2.5rem, 6vw, 4rem)",
-  color: theme.palette.primary.main,
   textAlign: "center",
   marginBottom: theme.spacing(2),
 }));
 
 const Subtitle = styled(Typography)(({ theme }) => ({
   fontSize: "1.1rem",
-  color: theme.palette.text.secondary,
+  color: "#dea04c",
   textAlign: "center",
   marginBottom: theme.spacing(6),
 }));
 
 const StyledCard = styled(Card)(({ theme }) => ({
   borderRadius: 24,
-  boxShadow: "0 2px 12px rgba(0,0,0,0.04)",
-  border: `2px solid #e3e0d3`,
-  background: "#fcfbf7",
-  transition: "box-shadow 0.2s",
+  boxShadow: `0 4px 20px ${theme.palette.secondary.main}20`,
+  border: `2px solid #fef9e7`,
+  background: theme.palette.background.default,
+  transition: "all 0.3s ease",
   "&:hover": {
-    boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
+    boxShadow: `0 12px 40px ${theme.palette.secondary.main}30`,
     borderColor: theme.palette.primary.main,
+    transform: "translateY(-6px)",
   },
   height: "100%",
   display: "flex",
@@ -49,17 +46,14 @@ const RoomImage = styled("img")(({ theme }) => ({
   borderRadius: 40,
   margin: "0 auto",
   marginBottom: theme.spacing(2),
-  boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-  background: "#e3e0d3",
+  boxShadow: `0 6px 20px #a06b3720`,
+  background: "#f5f7f8",
 }));
 
 const RoomName = styled(Typography)(({ theme }) => ({
-  fontFamily: "Playfair Display, serif",
-  fontWeight: 500,
-  fontSize: "1.5rem",
-  color: theme.palette.primary.main,
   textAlign: "center",
   marginBottom: theme.spacing(1),
+  color: theme.palette.primary.main,
 }));
 
 const RoomDesc = styled(Typography)(({ theme }) => ({
@@ -85,8 +79,10 @@ export default function RoomsGrid() {
   return (
     <Section>
       <Container>
-        <Title>Our Signature Stays</Title>
-        <Subtitle>Solea's rooms are more than places to rest — they are where your story unfolds.</Subtitle>
+        <Title variant="h2">Our Signature Stays</Title>
+        <Subtitle variant="subtitle1">
+          Solea's rooms are more than places to rest — they are where your story unfolds.
+        </Subtitle>
         <Grid container spacing={4} justifyContent="center">
           {ROOM_DETAILS.map((room, idx) => (
             <Grid item xs={12} sm={6} md={4} key={room.type}>
@@ -94,7 +90,7 @@ export default function RoomsGrid() {
                 <StyledCard>
                   <RoomImage src={roomImages[idx % roomImages.length]} alt={room.name} />
                   <CardContent>
-                    <RoomName>{room.name}</RoomName>
+                    <RoomName variant="h5">{room.name}</RoomName>
                     <RoomDesc>{room.description?.split("\n")[0] || "A beautiful room."}</RoomDesc>
                   </CardContent>
                 </StyledCard>

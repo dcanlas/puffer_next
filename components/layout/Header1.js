@@ -33,10 +33,10 @@ import NavLinks from "./NavLinks";
 import Logo from "./../../public/images/resort-logo-horizontal.png";
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.primary.contrastText,
+  backgroundColor: theme.palette.secondary.main,
+  color: theme.palette.secondary.contrastText,
   boxShadow: "none",
-  borderBottom: `1px solid ${theme.palette.primary.dark}`,
+  borderBottom: `1px solid ${theme.palette.secondary.dark}`,
 }));
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
@@ -71,7 +71,7 @@ const CenterLogo = styled(Box)(({ theme }) => ({
 }));
 
 const MobileMenuButton = styled(IconButton)(({ theme }) => ({
-  color: theme.palette.primary.contrastText,
+  color: theme.palette.secondary.contrastText,
   display: "none",
   [theme.breakpoints.down("md")]: {
     display: "block",
@@ -91,6 +91,16 @@ const SocialLinks = styled(Box)(({ theme }) => ({
   display: "flex",
   gap: theme.spacing(2),
   marginTop: theme.spacing(2),
+}));
+
+const NavButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.secondary.contrastText,
+  fontWeight: 500,
+  fontFamily: '"FinkHeavy-Medium", "Roboto", "Helvetica", "Arial", sans-serif',
+  "&:hover": {
+    color: theme.palette.primary.main,
+    backgroundColor: "transparent",
+  },
 }));
 
 const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
@@ -121,9 +131,9 @@ const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
           {/* Left nav links */}
           <NavSection sx={{ justifyContent: "flex-start" }}>
             {leftLinks.map((link) => (
-              <Button key={link.label} component={Link} href={link.href} sx={{ color: "white", fontWeight: 500 }}>
+              <NavButton key={link.label} component={Link} href={link.href}>
                 {link.label}
-              </Button>
+              </NavButton>
             ))}
           </NavSection>
 
@@ -137,32 +147,76 @@ const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
           {/* Right nav links */}
           <NavSection sx={{ justifyContent: "flex-end" }}>
             {rightLinks.map((link) => (
-              <Button key={link.label} component={Link} href={link.href} sx={{ color: "white", fontWeight: 500 }}>
+              <NavButton key={link.label} component={Link} href={link.href}>
                 {link.label}
-              </Button>
+              </NavButton>
             ))}
           </NavSection>
         </StyledToolbar>
       </Container>
       {/* Mobile Drawer */}
       <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerToggle}>
-        <Box sx={{ width: 250, p: 2 }}>
-          <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
-            <Link href="/">
-              <Image width={120} height={40} src={Logo} alt="Puffer Isle Resort Logo" />
-            </Link>
+        <Box sx={{ width: 280, p: 3, backgroundColor: "#82d0dd", height: "100%" }}>
+          {/* Mobile menu header */}
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 3 }}>
+            <Typography variant="h6" sx={{ fontFamily: '"FinkHeavy-Medium"', color: "#2d4a52" }}>
+              Puffer Resort
+            </Typography>
+            <IconButton onClick={handleDrawerToggle} sx={{ color: "#2d4a52" }}>
+              <CloseIcon />
+            </IconButton>
           </Box>
-          {[...leftLinks, ...rightLinks].map((link) => (
-            <Button
-              key={link.label}
-              component={Link}
-              href={link.href}
-              sx={{ color: "#1a237e", fontWeight: 500, width: "100%", justifyContent: "flex-start", mb: 1 }}
-              onClick={handleDrawerToggle}
-            >
-              {link.label}
-            </Button>
-          ))}
+
+          {/* Contact info */}
+          <ContactInfoBox>
+            <PhoneIcon sx={{ color: "#2d4a52", fontSize: 20 }} />
+            <Typography variant="body2" sx={{ color: "#2d4a52" }}>
+              +1 (555) 123-4567
+            </Typography>
+          </ContactInfoBox>
+
+          <ContactInfoBox>
+            <EmailIcon sx={{ color: "#2d4a52", fontSize: 20 }} />
+            <Typography variant="body2" sx={{ color: "#2d4a52" }}>
+              info@pufferresort.com
+            </Typography>
+          </ContactInfoBox>
+
+          {/* Mobile navigation */}
+          <List sx={{ mt: 3 }}>
+            {[...leftLinks, ...rightLinks].map((link) => (
+              <ListItem key={link.label} disablePadding>
+                <Button
+                  component={Link}
+                  href={link.href}
+                  fullWidth
+                  sx={{
+                    justifyContent: "flex-start",
+                    py: 1.5,
+                    color: "#2d4a52",
+                    fontFamily: '"FinkHeavy-Medium"',
+                    "&:hover": { backgroundColor: "rgba(45, 74, 82, 0.1)" },
+                  }}
+                  onClick={handleDrawerToggle}
+                >
+                  {link.label}
+                </Button>
+              </ListItem>
+            ))}
+          </List>
+
+          {/* Social links */}
+          <SocialLinks>
+            <IconButton sx={{ color: "#2d4a52" }}>
+              <i className="fab fa-facebook" />
+            </IconButton>
+            <IconButton sx={{ color: "#2d4a52" }}>
+              <i className="fab fa-instagram" />
+            </IconButton>
+            <IconButton sx={{ color: "#2d4a52" }}>
+              <i className="fab fa-twitter" />
+            </IconButton>
+          </SocialLinks>
         </Box>
       </Drawer>
     </StyledAppBar>
