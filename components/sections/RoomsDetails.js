@@ -12,28 +12,26 @@ import {
   InputLabel,
   FormControl,
 } from "@mui/material";
+import RoomPhotoGallery from "./RoomPhotoGallery";
 
 export default function RoomDetails({ room }) {
   return (
     <>
       <Box component="section" className="blog-details pt-120 pb-120">
         <Container className="main-container">
-          <Box className="title-outer text-center">
+          <Box className="title-outer text-center" sx={{ mb: 4 }}>
             <Typography variant="h1" className="title">
               {room.name}
             </Typography>
           </Box>
+
+          {/* Full width photo gallery */}
+          <Box sx={{ mb: 3 }}>
+            <RoomPhotoGallery roomType={room.type} />
+          </Box>
+
           <Grid container spacing={4}>
             <Grid item xl={8} lg={7}>
-              <Box className="testimonial-block-home5 mb-50">
-                <Box className="inner-box">
-                  <Box className="image-box">
-                    <figure className="image">
-                      <img className="w-100" src="/images/resource/room-1.jpg" alt="" />
-                    </figure>
-                  </Box>
-                </Box>
-              </Box>
               <Box className="room-details__left">
                 <Box className="wrapper">
                   <Typography variant="h3">Description of Room</Typography>
