@@ -1,18 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid, Modal, IconButton, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { Close, ChevronLeft, ChevronRight, GridOn } from "@mui/icons-material";
+import { supabase } from "../../lib/supabase";
 
 const RoomPhotoGallery = ({ roomType = "family-room" }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [roomPhotos, setRoomPhotos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Sample room photos - using available images from the project
-  // In the future, this can be made dynamic based on roomType
-  const getRoomPhotos = (type) => {
-    // For now, using the same photos for all room types
-    // Later this can be customized per room type
+  // Fetch room photos from Supabase storage
+  const fetchRoomPhotos = async (type) => {
+    try {
+      const { data, error } = await supabase.storage.from("room-photos").list(`${type}/`, {
+        limit: 20,
+        offset: 0,
+      });
+
+      if (error) {
+        console.error("Error fetching photos:", error);
+        // In production, quietly fall back to local images
+        return getFallbackPhotos();
+      }
+
+      if (!data || data.length === 0) {
+        // No photos found, use fallback
+        return getFallbackPhotos();
+      }
+
+      // Convert Supabase file list to photo objects
+      const photos = data
+        .filter((file) => file.name.match(/\.(jpg|jpeg|png|webp)$/i))
+        .map((file, index) => {
+          const { data: urlData } = supabase.storage.from("room-photos").getPublicUrl(`${type}/${file.name}`);
+
+          return {
+            src: urlData.publicUrl,
+            alt: `Room ${getPhotoAltText(file.name, index + 1)}`,
+          };
+        });
+
+      return photos.length > 0 ? photos : getFallbackPhotos();
+    } catch (error) {
+      console.error("Error fetching room photos:", error);
+      return getFallbackPhotos();
+    }
+  };
+
+  // Fallback to local images if Supabase fails
+  const getFallbackPhotos = () => {
     return [
       { src: "/images/resource/room-1.jpg", alt: "Room main view" },
       { src: "/images/resource/room-2.jpg", alt: "Room interior" },
@@ -23,7 +61,36 @@ const RoomPhotoGallery = ({ roomType = "family-room" }) => {
     ];
   };
 
-  const roomPhotos = getRoomPhotos(roomType);
+  // Generate alt text based on filename
+  const getPhotoAltText = (filename, index) => {
+    const name = filename.replace(/\.[^/.]+$/, "").toLowerCase();
+    if (name.includes("main")) return "main view";
+    if (name.includes("interior")) return "interior";
+    if (name.includes("bathroom")) return "bathroom";
+    if (name.includes("balcony")) return "balcony view";
+    if (name.includes("seating")) return "seating area";
+    if (name.includes("night")) return "night view";
+    return `view ${index}`;
+  };
+
+  // Load photos when component mounts or roomType changes
+  useEffect(() => {
+    const loadPhotos = async () => {
+      setLoading(true);
+      try {
+        const photos = await fetchRoomPhotos(roomType);
+        setRoomPhotos(photos);
+      } catch (error) {
+        console.error("Failed to load photos:", error);
+        // Fallback to local photos on any error
+        setRoomPhotos(getFallbackPhotos());
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPhotos();
+  }, [roomType]);
 
   const handleImageClick = (index) => {
     setCurrentImageIndex(index);
@@ -47,6 +114,17 @@ const RoomPhotoGallery = ({ roomType = "family-room" }) => {
     if (event.key === "ArrowRight") handleNextImage();
     if (event.key === "Escape") handleCloseModal();
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <Box sx={{ mb: 4, textAlign: "center", py: 8, bgcolor: "grey.100" }}>
+        <Typography variant="h6" color="text.secondary">
+          Loading room photos...
+        </Typography>
+      </Box>
+    );
+  }
 
   // Handle case where no photos are available
   if (!roomPhotos || roomPhotos.length === 0) {

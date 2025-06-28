@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.17.1",
     "@mui/material": "^5.15.10",
     "@mui/x-date-pickers": "^6.19.4",
+    "@supabase/supabase-js": "^2.39.0",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.10",
     "next": "^14.1.0",
