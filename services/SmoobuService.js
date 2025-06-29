@@ -33,6 +33,8 @@ export async function makeGetQuery(path, queryString = "") {
   }
 }
 
+// TODO: Probably remove this functionality both here and in the pass through proxy
+// Potentailly dangerous to have this in the codebase
 export async function makePostQuery(path, requestBody) {
   try {
     const smoobuResponse = await fetch(PROXY_URL, {

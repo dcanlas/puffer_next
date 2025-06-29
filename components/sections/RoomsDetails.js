@@ -13,6 +13,7 @@ import {
   FormControl,
 } from "@mui/material";
 import RoomPhotoGallery from "./RoomPhotoGallery";
+import AboutTheResort from "./AboutTheResort";
 
 export default function RoomDetails({ room }) {
   return (
@@ -35,16 +36,24 @@ export default function RoomDetails({ room }) {
               <Box className="room-details__left">
                 <Box className="wrapper">
                   <Typography variant="h3">Description of Room</Typography>
-                  <Typography className="text">{room.description}</Typography>
+                  <Typography
+                    className="text"
+                    sx={{
+                      whiteSpace: "pre-line",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {room.description}
+                  </Typography>
                   <Grid container justifyContent="center">
                     <Grid item xl={12}>
                       <Box className="room-details__content-right mb-40 mt-20">
                         <Box className="room-details__details-box">
                           <Grid container>
                             <Grid item xs={6} md={3}>
-                              <Typography className="text mb-0">Room Size</Typography>
+                              <Typography className="text mb-0">Bathroom</Typography>
                               <Typography variant="h6" className="title">
-                                600Sq
+                                {room.bathroom}
                               </Typography>
                             </Grid>
                             <Grid item xs={6} md={3}>
@@ -136,6 +145,12 @@ export default function RoomDetails({ room }) {
                     </Grid>
                   </Grid>
                 </Box>
+
+                {/* About the Resort Section */}
+                <Box sx={{ mt: 6, mb: 4 }}>
+                  <AboutTheResort showContainer={false} />
+                </Box>
+
                 <Box className="d-sm-flex align-items-sm-center justify-content-sm-between pt-40 pb-40 border-top">
                   <Typography variant="h6" className="my-sm-0">
                     Share Details
@@ -154,64 +169,6 @@ export default function RoomDetails({ room }) {
                       <i className="fab fa-instagram"></i>
                     </Link>{" "}
                   </Box>
-                </Box>
-                <Box className="p-4 p-lg-5 bg-light">
-                  <Typography variant="h4" className="mt-0">
-                    Send Us Your Question
-                  </Typography>
-                  <form id="contact_form" name="contact_form" className="" action="includes/sendmail.php" method="post">
-                    <Grid container spacing={2}>
-                      <Grid item sm={6} xl={4}>
-                        <Box className="mb-3">
-                          <TextField
-                            name="form_name"
-                            className="form-control bg-white"
-                            type="text"
-                            placeholder="Enter Name"
-                            fullWidth
-                          />
-                        </Box>
-                      </Grid>
-                      <Grid item sm={6} xl={4}>
-                        <Box className="mb-3">
-                          <TextField
-                            name="form_email"
-                            className="form-control bg-white required email"
-                            type="email"
-                            placeholder="Enter Email"
-                            fullWidth
-                          />
-                        </Box>
-                      </Grid>
-                      <Grid item xl={4}>
-                        <Box className="mb-3">
-                          <TextField
-                            name="form_phone"
-                            className="form-control bg-white required phone"
-                            type="number"
-                            placeholder="Enter Phone"
-                            fullWidth
-                          />
-                        </Box>
-                      </Grid>
-                    </Grid>
-                    <Box className="mb-3">
-                      <TextField
-                        name="form_message"
-                        className="form-control bg-white required"
-                        multiline
-                        rows={5}
-                        placeholder="Enter Message"
-                        fullWidth
-                      />
-                    </Box>
-                    <Box className="mb-0">
-                      <input name="form_botcheck" className="form-control" type="hidden" value="" />
-                      <Button type="submit" className="theme-btn btn-style-one" data-loading-text="Please wait...">
-                        <span className="btn-title">Submit Comment</span>
-                      </Button>
-                    </Box>
-                  </form>
                 </Box>
               </Box>
             </Grid>
