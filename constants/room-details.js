@@ -13,6 +13,13 @@ export const ROOM_DETAILS = [
     beds: "Bunk Bed (2x Double), Pull Out Double Bed",
     view: "Sea View",
     bathroom: "Private Bath",
+    amenities: [
+      { label: "Air Conditioning", icon: "fas fa-snowflake" },
+      { label: "Toiletries", icon: "fas fa-soap" },
+      { label: "Towels", icon: "fas fa-bath" },
+      { label: "Balcony", icon: "fas fa-door-open" },
+      { label: "Clothes Rack", icon: "fas fa-tshirt" },
+    ],
   },
   {
     type: "standard-room",
@@ -28,6 +35,13 @@ export const ROOM_DETAILS = [
     beds: "Bunk Bed (1x Double) (1x Single), Pull Out Single Bed",
     view: "Sea View/ Mountain View",
     bathroom: "Private Bath",
+    amenities: [
+      { label: "Air Conditioning", icon: "fas fa-snowflake" },
+      { label: "Toiletries", icon: "fas fa-soap" },
+      { label: "Towels", icon: "fas fa-bath" },
+      { label: "Balcony", icon: "fas fa-door-open" },
+      { label: "Clothes Rack", icon: "fas fa-tshirt" },
+    ],
   },
   {
     type: "budget-room",
@@ -44,6 +58,12 @@ export const ROOM_DETAILS = [
     beds: "Double Bed w/ Pull Out Double Bed",
     view: "Sea View",
     bathroom: "Shared Bath",
+    amenities: [
+      { label: "Fan", icon: "fas fa-fan" },
+      { label: "Toiletries", icon: "fas fa-soap" },
+      { label: "Towels", icon: "fas fa-bath" },
+      { label: "Clothes Rack", icon: "fas fa-tshirt" },
+    ],
   },
   {
     type: "family-fan",
@@ -62,5 +82,11 @@ We also provide the essential toiletries like towels and toilet paper.
     beds: "Bunk Bed (2x Double), Pull Out Single Bed",
     view: "Sea View",
     bathroom: "Private Bath",
+    amenities: [
+      { label: "Fan", icon: "fas fa-fan" },
+      { label: "Toiletries", icon: "fas fa-soap" },
+      { label: "Towels", icon: "fas fa-bath" },
+      { label: "Dining Set", icon: "fas fa-utensils" },
+    ],
   },
 ];

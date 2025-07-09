@@ -81,68 +81,23 @@ export default function RoomDetails({ room }) {
                   </Grid>
                 </Box>
                 <Box mt={5}>
-                  <Typography variant="h3">Room Amenities</Typography>
+                  <Typography variant="h3" mb={2}>
+                    Room Amenities
+                  </Typography>
                   <Grid container spacing={2} className="room-facility-list mb-40">
-                    <Grid item sm={6} xl={4}>
-                      <Box className="list-one d-flex align-items-center me-sm-4 mb-3">
-                        <Box className="icon text-theme-color1 mr-10 flex-shrink-0">
-                          <i className="far fa-air-conditioner"></i>
-                        </Box>
-                        <Typography variant="h6" className="title m-0">
-                          Air Conditionar
-                        </Typography>
-                      </Box>
-                    </Grid>
-                    <Grid item sm={6} xl={4}>
-                      <Box className="list-one d-flex align-items-center me-sm-4 mb-3">
-                        <Box className="icon text-theme-color1 mr-10 flex-shrink-0">
-                          <i className="far fa-swimming-pool"></i>
-                        </Box>
-                        <Typography variant="h6" className="title m-0">
-                          Swiming Pool
-                        </Typography>
-                      </Box>
-                    </Grid>
-                    <Grid item sm={6} xl={4}>
-                      <Box className="list-one d-flex align-items-center me-sm-4 mb-3">
-                        <Box className="icon text-theme-color1 mr-10 flex-shrink-0">
-                          <i className="far fa-dumbbell"></i>
-                        </Box>
-                        <Typography variant="h6" className="title m-0">
-                          Gymnasium
-                        </Typography>
-                      </Box>
-                    </Grid>
-                    <Grid item sm={6} xl={4}>
-                      <Box className="list-one d-flex align-items-center me-sm-4 mb-3">
-                        <Box className="icon text-theme-color1 mr-10 flex-shrink-0">
-                          <i className="fas fa-parking-circle"></i>
-                        </Box>
-                        <Typography variant="h6" className="title m-0">
-                          Parking
-                        </Typography>
-                      </Box>
-                    </Grid>
-                    <Grid item sm={6} xl={4}>
-                      <Box className="list-one d-flex align-items-center me-sm-4 mb-3">
-                        <Box className="icon text-theme-color1 mr-10 flex-shrink-0">
-                          <i className="far fa-shield-check"></i>
-                        </Box>
-                        <Typography variant="h6" className="title m-0">
-                          Security
-                        </Typography>
-                      </Box>
-                    </Grid>
-                    <Grid item sm={6} xl={4}>
-                      <Box className="list-one d-flex align-items-center me-sm-4">
-                        <Box className="icon text-theme-color1 mr-10 flex-shrink-0">
-                          <i className="far fa-child"></i>
-                        </Box>
-                        <Typography variant="h6" className="title m-0">
-                          Playground
-                        </Typography>
-                      </Box>
-                    </Grid>
+                    {room.amenities &&
+                      room.amenities.map((amenity, index) => (
+                        <Grid item sm={6} xl={4} key={index}>
+                          <Box className="list-one d-flex align-items-center me-sm-4 mb-3">
+                            <Box className="icon text-theme-color1 mr-10 flex-shrink-0">
+                              <i className={amenity.icon}></i>
+                            </Box>
+                            <Typography variant="h6" className="title m-0">
+                              {amenity.label}
+                            </Typography>
+                          </Box>
+                        </Grid>
+                      ))}
                   </Grid>
                 </Box>
 
