@@ -2,19 +2,11 @@
 import { useEffect, useState } from "react";
 import Breadcrumb from "./Breadcrumb";
 import Footer1 from "./Footer1";
-import Footer2 from "./Footer2";
 import Header1 from "./Header1";
 import Header2 from "./Header2";
 import PageHead from "./PageHead";
 
-export default function Layout({
-  headerStyle,
-  handleRemove,
-  footerStyle,
-  headTitle,
-  breadcrumbTitle,
-  children,
-}) {
+export default function Layout({ headerStyle, handleRemove, footerStyle, headTitle, breadcrumbTitle, children }) {
   const [scroll, setScroll] = useState(0);
   // Moblile Menu
   const [isMobileMenu, setMobileMenu] = useState(false);
@@ -75,7 +67,6 @@ export default function Layout({
 
         {!footerStyle && <Footer1 />}
         {footerStyle == 1 ? <Footer1 /> : null}
-        {footerStyle == 2 ? <Footer2 /> : null}
       </div>
     </>
   );

@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { FAQ_SECTIONS } from "@/constants/faq-data";
+import PageHeader from "@/components/custom/PageHeader";
 
 const StyledAccordion = styled(Accordion)(({ theme }) => ({
   boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
@@ -57,27 +58,13 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
   textAlign: "center",
 }));
 
-const PageHeader = styled(Box)(({ theme }) => ({
-  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-  color: theme.palette.primary.contrastText,
-  padding: theme.spacing(12, 0, 8, 0),
-  textAlign: "center",
-  marginBottom: theme.spacing(6),
-}));
-
 export default function FAQ() {
   return (
     <Layout breadcrumbTitle="Frequently Asked Questions">
-      <PageHeader>
-        <Container maxWidth="lg">
-          <Typography variant="h1" component="h1" gutterBottom sx={{ fontSize: { xs: "2.5rem", md: "3.5rem" } }}>
-            Frequently Asked Questions
-          </Typography>
-          <Typography variant="h5" sx={{ opacity: 0.9, maxWidth: 600, margin: "0 auto" }}>
-            Find answers to common questions about Puffer Isle Resort
-          </Typography>
-        </Container>
-      </PageHeader>
+      <PageHeader
+        title="Frequently Asked Questions"
+        subtitle="Find answers to common questions about Puffer Isle Resort"
+      />
 
       <Container maxWidth="lg" sx={{ pb: 8 }}>
         {FAQ_SECTIONS.map((section, sectionIndex) => (
