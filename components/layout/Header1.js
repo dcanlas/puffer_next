@@ -116,7 +116,7 @@ const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
   const rightLinks = [
     { label: "Experiences", href: "/experiences" },
     { label: "Gallery", href: "/gallery" },
-    { label: "Contact", href: "/contact" },
+    { label: "FAQ", href: "/faq" },
   ];
 
   return (
