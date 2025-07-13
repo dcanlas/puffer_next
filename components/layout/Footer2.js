@@ -64,8 +64,8 @@ const Footer1 = () => {
                         </Link>
                       </li>
                       <li>
-                        <Link href="#">
-                          <i className="fa-solid fa-crosshairs"></i>Restaurant
+                        <Link href="/amenities">
+                          <i className="fa-solid fa-crosshairs"></i>Amenities
                         </Link>
                       </li>
                       <li>

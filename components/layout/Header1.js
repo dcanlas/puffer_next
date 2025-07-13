@@ -111,7 +111,7 @@ const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
   const leftLinks = [
     { label: "Home", href: "/" },
     { label: "Rooms & Suites", href: "/rooms" },
-    { label: "Dining", href: "/dining" },
+    { label: "Amenities", href: "/amenities" },
   ];
   const rightLinks = [
     { label: "Experiences", href: "/experiences" },
