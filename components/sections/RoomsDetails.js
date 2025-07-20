@@ -160,7 +160,13 @@ export default function RoomDetails({ room }) {
                         <Box className="mb-3">
                           <InputLabel className="form-label">Guests</InputLabel>
                           <FormControl fullWidth>
-                            <Select className="form-select form-control bg-white" defaultValue="">
+                            <Select
+                              className="form-select form-control bg-white"
+                              defaultValue=""
+                              MenuProps={{
+                                disableScrollLock: true,
+                              }}
+                            >
                               <MenuItem value="" disabled>
                                 Select
                               </MenuItem>

@@ -190,7 +190,17 @@ export default function Slider2() {
             </Grid>
             <Grid item xs={12} sm={4}>
               <Typography variant="subtitle2">Room</Typography>
-              <TextField select fullWidth variant="outlined" defaultValue="Standard Room Size">
+              <TextField
+                select
+                fullWidth
+                variant="outlined"
+                defaultValue="Standard Room Size"
+                SelectProps={{
+                  MenuProps: {
+                    disableScrollLock: true,
+                  },
+                }}
+              >
                 <MenuItem value="Standard Room Size">Standard Room Size</MenuItem>
                 <MenuItem value="Deluxe Room Size">Deluxe Room Size</MenuItem>
                 <MenuItem value="Family Room Size">Family Room Size</MenuItem>

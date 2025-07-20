@@ -43,6 +43,7 @@ const NavLinks = ({ extraClassName }) => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        disableScrollLock={true}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "center",

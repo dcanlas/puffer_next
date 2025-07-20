@@ -39,7 +39,15 @@ export default function Select(props) {
 
   return (
     <FormControl variant="standard" sx={styles}>
-      <SelectMUI {...rest}>{loopMenuItems}</SelectMUI>
+      <SelectMUI
+        {...rest}
+        MenuProps={{
+          disableScrollLock: true,
+          ...rest.MenuProps,
+        }}
+      >
+        {loopMenuItems}
+      </SelectMUI>
     </FormControl>
   );
 }

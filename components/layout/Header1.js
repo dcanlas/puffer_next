@@ -155,7 +155,15 @@ const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
         </StyledToolbar>
       </Container>
       {/* Mobile Drawer */}
-      <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerToggle}>
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={handleDrawerToggle}
+        disableScrollLock={true}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+      >
         <Box sx={{ width: 280, p: 3, backgroundColor: "#82d0dd", height: "100%" }}>
           {/* Mobile menu header */}
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 3 }}>

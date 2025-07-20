@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ROOM_DETAILS } from "@/constants/room-details";
-import { Box, Container, Grid, Typography, Card, CardContent, CardActionArea } from "@mui/material";
+import { Box, Container, Grid, Typography, Card, CardActionArea } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const Section = styled(Box)(({ theme }) => ({
@@ -22,7 +22,7 @@ const Subtitle = styled(Typography)(({ theme }) => ({
 }));
 
 const StyledCard = styled(Card)(({ theme }) => ({
-  borderRadius: 24,
+  borderRadius: 0,
   boxShadow: `0 4px 20px ${theme.palette.secondary.main}20`,
   border: `2px solid #fef9e7`,
   background: theme.palette.background.default,
@@ -32,34 +32,44 @@ const StyledCard = styled(Card)(({ theme }) => ({
     borderColor: theme.palette.primary.main,
     transform: "translateY(-6px)",
   },
-  height: "100%",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
+  height: 320,
+  position: "relative",
+  overflow: "hidden",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
 }));
 
-const RoomImage = styled("img")(({ theme }) => ({
-  width: 180,
-  height: 180,
-  objectFit: "cover",
-  borderRadius: 40,
-  margin: "0 auto",
-  marginBottom: theme.spacing(2),
-  boxShadow: `0 6px 20px #a06b3720`,
-  background: "#f5f7f8",
+const CardOverlay = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  right: 0,
+  background: "rgba(0, 0, 0, 0.7)",
+  padding: theme.spacing(2),
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
 }));
 
 const RoomName = styled(Typography)(({ theme }) => ({
-  textAlign: "center",
-  marginBottom: theme.spacing(1),
-  color: theme.palette.primary.main,
+  color: "white",
+  fontWeight: 600,
+  textShadow: "0 2px 4px rgba(0,0,0,0.5)",
+  flex: 1,
 }));
 
-const RoomDesc = styled(Typography)(({ theme }) => ({
-  fontSize: "1rem",
-  color: theme.palette.text.secondary,
-  textAlign: "center",
+const AmenitiesContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  gap: theme.spacing(1),
+  alignItems: "center",
+}));
+
+const AmenityIcon = styled("i")(({ theme }) => ({
+  color: "white",
+  fontSize: "1.2rem",
+  textShadow: "0 2px 4px rgba(0,0,0,0.5)",
+  filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.8))",
 }));
 
 const roomImages = [
@@ -83,16 +93,23 @@ export default function RoomsGrid() {
         <Subtitle variant="subtitle1">
           Solea's rooms are more than places to rest — they are where your story unfolds.
         </Subtitle>
-        <Grid container spacing={4} justifyContent="center">
+        <Grid container spacing={2} justifyContent="center">
           {ROOM_DETAILS.map((room, idx) => (
-            <Grid item xs={12} sm={6} md={4} key={room.type}>
+            <Grid item xs={12} md={6} key={room.type}>
               <CardActionArea component={Link} href={`/room-details/${room.type}`} sx={{ height: "100%" }}>
-                <StyledCard>
-                  <RoomImage src={roomImages[idx % roomImages.length]} alt={room.name} />
-                  <CardContent>
-                    <RoomName variant="h5">{room.name}</RoomName>
-                    <RoomDesc>{room.description?.split("\n")[0] || "A beautiful room."}</RoomDesc>
-                  </CardContent>
+                <StyledCard
+                  sx={{
+                    backgroundImage: `url(${roomImages[idx % roomImages.length]})`,
+                  }}
+                >
+                  <CardOverlay>
+                    <RoomName variant="h6">{room.name}</RoomName>
+                    <AmenitiesContainer>
+                      {room.amenities.slice(0, 4).map((amenity, amenityIdx) => (
+                        <AmenityIcon key={amenityIdx} className={amenity.icon} title={amenity.label} />
+                      ))}
+                    </AmenitiesContainer>
+                  </CardOverlay>
                 </StyledCard>
               </CardActionArea>
             </Grid>

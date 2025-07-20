@@ -8,6 +8,13 @@ import PageHead from "./PageHead";
 
 export default function Layout({ headerStyle, handleRemove, footerStyle, headTitle, breadcrumbTitle, children }) {
   const [scroll, setScroll] = useState(0);
+
+  // Calculate scrollbar width and set CSS custom property
+  useEffect(() => {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.setProperty("--scrollbar-width", `${scrollbarWidth}px`);
+  }, []);
+
   // Moblile Menu
   const [isMobileMenu, setMobileMenu] = useState(false);
   const handleMobileMenu = () => {
