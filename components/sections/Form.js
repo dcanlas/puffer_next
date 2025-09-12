@@ -1,11 +1,9 @@
 "use client";
 import React from "react";
-import Link from "next/link";
 import {
   Box,
   Container,
   Typography,
-  Button,
   List,
   ListItem,
   ListItemIcon,
@@ -22,6 +20,7 @@ import {
   AcUnit as AcUnitIcon,
   Landscape as LandscapeIcon,
 } from "@mui/icons-material";
+import Lookup from "@/components/custom/Lookup";
 
 const Section = styled(Box)(({ theme }) => ({
   padding: theme.spacing(8, 0),
@@ -57,74 +56,74 @@ const AmenityIcon = styled(ListItemIcon)(({ theme }) => ({
 
 export default function Form() {
   return (
-    <Section>
-      <Container maxWidth="lg">
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
-            <Box sx={{ height: "100%" }}>
-              <SubTitle variant="subtitle1">BOOK YOUR STAY</SubTitle>
-              <Typography variant="h2" gutterBottom>
-                Check Availability
-              </Typography>
-              <Typography variant="body1" paragraph>
-                Find the perfect room for your stay at our hotel. We offer a variety of rooms to suit your needs, from
-                budget-friendly fan rooms to comfortable air-conditioned suites.
-              </Typography>
-              <Button component={Link} href="/check-availability" variant="contained" color="secondary" size="large">
-                Check Availability
-              </Button>
-            </Box>
+    <>
+      <Lookup />
+      <Section>
+        <Container maxWidth="lg">
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ height: "100%" }}>
+                <SubTitle variant="subtitle1">BOOK YOUR STAY</SubTitle>
+                <Typography variant="h2" gutterBottom>
+                  Check Availability
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  Find the perfect room for your stay at our hotel. We offer a variety of rooms to suit your needs, from
+                  budget-friendly fan rooms to comfortable air-conditioned suites.
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <StyledPaper elevation={3}>
+                <SubTitle variant="subtitle1" sx={{ color: "secondary.main" }}>
+                  OUR AMENITIES
+                </SubTitle>
+                <Typography variant="h2" gutterBottom>
+                  What We Offer
+                </Typography>
+                <AmenitiesList>
+                  <AmenityItem>
+                    <AmenityIcon>
+                      <WifiIcon />
+                    </AmenityIcon>
+                    <ListItemText primary="Free WiFi" />
+                  </AmenityItem>
+                  <AmenityItem>
+                    <AmenityIcon>
+                      <HotelIcon />
+                    </AmenityIcon>
+                    <ListItemText primary="Comfortable Beds" />
+                  </AmenityItem>
+                  <AmenityItem>
+                    <AmenityIcon>
+                      <BathtubIcon />
+                    </AmenityIcon>
+                    <ListItemText primary="Private Bathrooms" />
+                  </AmenityItem>
+                  <AmenityItem>
+                    <AmenityIcon>
+                      <ShowerIcon />
+                    </AmenityIcon>
+                    <ListItemText primary="Hot Showers" />
+                  </AmenityItem>
+                  <AmenityItem>
+                    <AmenityIcon>
+                      <AcUnitIcon />
+                    </AmenityIcon>
+                    <ListItemText primary="Air Conditioning (in AC rooms)" />
+                  </AmenityItem>
+                  <AmenityItem>
+                    <AmenityIcon>
+                      <LandscapeIcon />
+                    </AmenityIcon>
+                    <ListItemText primary="Mountain View" />
+                  </AmenityItem>
+                </AmenitiesList>
+              </StyledPaper>
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <StyledPaper elevation={3}>
-              <SubTitle variant="subtitle1" sx={{ color: "secondary.main" }}>
-                OUR AMENITIES
-              </SubTitle>
-              <Typography variant="h2" gutterBottom>
-                What We Offer
-              </Typography>
-              <AmenitiesList>
-                <AmenityItem>
-                  <AmenityIcon>
-                    <WifiIcon />
-                  </AmenityIcon>
-                  <ListItemText primary="Free WiFi" />
-                </AmenityItem>
-                <AmenityItem>
-                  <AmenityIcon>
-                    <HotelIcon />
-                  </AmenityIcon>
-                  <ListItemText primary="Comfortable Beds" />
-                </AmenityItem>
-                <AmenityItem>
-                  <AmenityIcon>
-                    <BathtubIcon />
-                  </AmenityIcon>
-                  <ListItemText primary="Private Bathrooms" />
-                </AmenityItem>
-                <AmenityItem>
-                  <AmenityIcon>
-                    <ShowerIcon />
-                  </AmenityIcon>
-                  <ListItemText primary="Hot Showers" />
-                </AmenityItem>
-                <AmenityItem>
-                  <AmenityIcon>
-                    <AcUnitIcon />
-                  </AmenityIcon>
-                  <ListItemText primary="Air Conditioning (in AC rooms)" />
-                </AmenityItem>
-                <AmenityItem>
-                  <AmenityIcon>
-                    <LandscapeIcon />
-                  </AmenityIcon>
-                  <ListItemText primary="Mountain View" />
-                </AmenityItem>
-              </AmenitiesList>
-            </StyledPaper>
-          </Grid>
-        </Grid>
-      </Container>
-    </Section>
+        </Container>
+      </Section>
+    </>
   );
 }
