@@ -29,7 +29,7 @@ export default function Lookup() {
     // Clear check-in error
     setErrors((prev) => ({ ...prev, checkIn: null }));
     // Clear check-out error if check-out is now valid
-    if (checkOut && checkOut.isAfter(date)) {
+    if (checkOut && checkOut.diff(date) > 0) {
       setErrors((prev) => ({ ...prev, checkOut: null }));
     }
   };
@@ -49,7 +49,7 @@ export default function Lookup() {
 
     if (!checkOut) {
       newErrors.checkOut = "Check-out date is required";
-    } else if (checkIn && checkOut && checkOut.isSameOrBefore(checkIn)) {
+    } else if (checkIn && checkOut && (checkOut.isSame(checkIn) || checkOut.isBefore(checkIn))) {
       newErrors.checkOut = "Check-out date must be after check-in date";
     }
 

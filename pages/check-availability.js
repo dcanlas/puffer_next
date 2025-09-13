@@ -1,5 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/router";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -9,6 +10,7 @@ import { useRoomsContext } from "@/hooks/RoomsContext";
 import { Box, Container, Grid, Typography, TextField, Button, Alert } from "@mui/material";
 
 export default function CheckAvailability() {
+  const router = useRouter();
   const { roomsService, isReady } = useRoomsContext();
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
@@ -16,13 +18,27 @@ export default function CheckAvailability() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
   const [error, setError] = useState(null);
+  const [hasAutoSearched, setHasAutoSearched] = useState(false);
 
   const handleSearch = useCallback(
-    async (e) => {
-      e.preventDefault();
+    async (e, searchCheckIn = null, searchCheckOut = null, searchPartySize = null) => {
+      if (e && e.preventDefault) {
+        e.preventDefault();
+      }
 
       // Don't proceed if already searching
       if (isSearching) return;
+
+      // Use provided values or fall back to state
+      const checkInDate = searchCheckIn || checkIn;
+      const checkOutDate = searchCheckOut || checkOut;
+      const guestCount = searchPartySize || partySize;
+
+      // Validate required values
+      if (!checkInDate || !checkOutDate || !guestCount) {
+        console.error("Missing required search parameters");
+        return;
+      }
 
       setIsSearching(true);
       setError(null);
@@ -40,9 +56,9 @@ export default function CheckAvailability() {
         }
 
         const results = await findAvailableRoomCombinations(
-          checkIn.format("YYYY-MM-DD"),
-          checkOut.format("YYYY-MM-DD"),
-          partySize,
+          checkInDate.format("YYYY-MM-DD"),
+          checkOutDate.format("YYYY-MM-DD"),
+          guestCount,
           roomsData
         );
 
@@ -55,8 +71,39 @@ export default function CheckAvailability() {
         setIsSearching(false);
       }
     },
-    [checkIn, checkOut, partySize, roomsService, isReady]
+    [checkIn, checkOut, partySize, roomsService, isReady, isSearching]
   );
+
+  // Handle URL parameters and auto-search in one useEffect
+  useEffect(() => {
+    if (router.isReady && router.query && !hasAutoSearched && isReady) {
+      const { checkIn: checkInParam, checkOut: checkOutParam, guests: guestsParam } = router.query;
+
+      if (checkInParam && checkOutParam && guestsParam) {
+        // Parse URL parameters
+        const checkInDate = dayjs(checkInParam);
+        const checkOutDate = dayjs(checkOutParam);
+        const guestCount = Math.max(1, Math.min(50, parseInt(guestsParam) || 1));
+
+        // Validate dates and guest count
+        if (
+          checkInDate.isValid() &&
+          checkOutDate.isValid() &&
+          checkInDate.isBefore(checkOutDate) &&
+          guestCount >= 1 &&
+          guestCount <= 50
+        ) {
+          setCheckIn(checkInDate);
+          setCheckOut(checkOutDate);
+          setPartySize(guestCount);
+          setHasAutoSearched(true);
+
+          // Pass the parsed values directly to avoid state timing issues
+          handleSearch(null, checkInDate, checkOutDate, guestCount);
+        }
+      }
+    }
+  }, [router.isReady, router.query, hasAutoSearched, isReady, handleSearch]);
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-US", {
@@ -127,6 +174,12 @@ export default function CheckAvailability() {
             <Box className="sec-title">
               <span className="sub-title">Find Your Perfect Stay</span>
               <Typography variant="h2">Check Room Availability</Typography>
+              {hasAutoSearched && (
+                <Alert severity="info" sx={{ mt: 2, maxWidth: 600, mx: "auto" }}>
+                  <i className="fas fa-info-circle me-2"></i>
+                  Form pre-filled from your search. Results will appear automatically.
+                </Alert>
+              )}
             </Box>
           </Box>
 
