@@ -23,12 +23,17 @@ class RoomsService {
     try {
       const response = await makeGetQuery("/api/apartments");
       this.rawRooms = response.apartments;
-      ROOM_DETAILS.forEach(async (room) => {
-        const roomCopy = { ...room };
-        const propertyIds = this.rawRooms.filter((r) => r.name.includes(room.smoobuType)).map((r) => r.id);
-        roomCopy.properties = await Promise.all(propertyIds.map((id) => this.getDetailsById(id)));
-        this.roomsByType[room.type] = roomCopy;
-      });
+
+      // Wait for all room processing to complete
+      await Promise.all(
+        ROOM_DETAILS.map(async (room) => {
+          const roomCopy = { ...room };
+          const propertyIds = this.rawRooms.filter((r) => r.name.includes(room.smoobuType)).map((r) => r.id);
+          roomCopy.properties = await Promise.all(propertyIds.map((id) => this.getDetailsById(id)));
+          this.roomsByType[room.type] = roomCopy;
+        })
+      );
+
       this.isInitialized = true;
     } catch (error) {
       console.error(error);

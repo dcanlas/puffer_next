@@ -50,11 +50,9 @@ export default function CheckAvailability() {
         }
 
         const roomsData = roomsService.getRoomsByType();
-        console.log("rooms by type", roomsData);
         if (!roomsData) {
           throw new Error("Unable to fetch room data");
         }
-
         const results = await findAvailableRoomCombinations(
           checkInDate.format("YYYY-MM-DD"),
           checkOutDate.format("YYYY-MM-DD"),
