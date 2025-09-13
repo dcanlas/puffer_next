@@ -1,14 +1,13 @@
 "use client";
-import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Box, Container, Typography, Button, Paper } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import Lookup from "../custom/Lookup";
+import LookupWidget from "../custom/LookupWidget";
 
 // Initialize Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
@@ -182,7 +181,7 @@ export default function Slider1() {
           <span className="fa fa-long-arrow-alt-right" />
         </NavigationButton>
       </Swiper>
-      <Lookup />
+      <LookupWidget />
     </BannerSection>
   );
 }

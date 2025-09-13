@@ -109,3 +109,10 @@ a {
     color-scheme: dark;
   }
 }
+
+/* Fix for LookupForm positioning */
+.lookup-form-section {
+  position: static !important;
+  width: 100%;
+  z-index: auto;
+}

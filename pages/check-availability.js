@@ -1,13 +1,11 @@
 import Layout from "@/components/layout/Layout";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { findAvailableRoomCombinations } from "@/services/RatesService";
 import { useRoomsContext } from "@/hooks/RoomsContext";
-import { Box, Container, Grid, Typography, TextField, Button, Alert } from "@mui/material";
+import { Box, Container, Grid, Typography, Button, Alert } from "@mui/material";
+import LookupForm from "@/components/custom/LookupForm";
 
 export default function CheckAvailability() {
   const router = useRouter();
@@ -21,18 +19,14 @@ export default function CheckAvailability() {
   const [hasAutoSearched, setHasAutoSearched] = useState(false);
 
   const handleSearch = useCallback(
-    async (e, searchCheckIn = null, searchCheckOut = null, searchPartySize = null) => {
-      if (e && e.preventDefault) {
-        e.preventDefault();
-      }
-
+    async (formData) => {
       // Don't proceed if already searching
       if (isSearching) return;
 
-      // Use provided values or fall back to state
-      const checkInDate = searchCheckIn || checkIn;
-      const checkOutDate = searchCheckOut || checkOut;
-      const guestCount = searchPartySize || partySize;
+      // Extract values from form data
+      const checkInDate = formData.checkIn;
+      const checkOutDate = formData.checkOut;
+      const guestCount = formData.guests;
 
       // Validate required values
       if (!checkInDate || !checkOutDate || !guestCount) {
@@ -97,7 +91,11 @@ export default function CheckAvailability() {
           setHasAutoSearched(true);
 
           // Pass the parsed values directly to avoid state timing issues
-          handleSearch(null, checkInDate, checkOutDate, guestCount);
+          handleSearch({
+            checkIn: checkInDate,
+            checkOut: checkOutDate,
+            guests: guestCount,
+          });
         }
       }
     }
@@ -181,71 +179,16 @@ export default function CheckAvailability() {
             </Box>
           </Box>
 
-          <Box className="availability-form">
-            <form onSubmit={handleSearch}>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <Grid container spacing={3}>
-                  <Grid item md={6} xs={12}>
-                    <Box className="form-group">
-                      <label className="form-label">Check-in Date</label>
-                      <DatePicker
-                        value={checkIn}
-                        onChange={setCheckIn}
-                        disablePast
-                        className="form-control"
-                        slotProps={{
-                          textField: {
-                            variant: "standard",
-                            className: "form-control",
-                          },
-                        }}
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item md={6} xs={12}>
-                    <Box className="form-group">
-                      <label className="form-label">Check-out Date</label>
-                      <DatePicker
-                        value={checkOut}
-                        onChange={setCheckOut}
-                        disablePast
-                        minDate={checkIn ? dayjs(checkIn).add(1, "day") : null}
-                        className="form-control"
-                        slotProps={{
-                          textField: {
-                            variant: "standard",
-                            className: "form-control",
-                          },
-                        }}
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Box className="form-group">
-                      <label className="form-label">Number of Guests</label>
-                      <TextField
-                        type="number"
-                        className="form-control"
-                        value={partySize}
-                        onChange={(e) => setPartySize(Math.max(1, parseInt(e.target.value) || 1))}
-                        min="1"
-                        fullWidth
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item xs={12} textAlign="center">
-                    <Button
-                      type="submit"
-                      className="theme-btn btn-style-one"
-                      disabled={!checkIn || !checkOut || isSearching || !isReady}
-                    >
-                      <span className="btn-title">{isSearching ? "Searching..." : "Check Availability"}</span>
-                    </Button>
-                  </Grid>
-                </Grid>
-              </LocalizationProvider>
-            </form>
-          </Box>
+          <LookupForm
+            onSubmit={handleSearch}
+            initialValues={{
+              checkIn: checkIn,
+              checkOut: checkOut,
+              guests: partySize,
+            }}
+            submitButtonText={isSearching ? "Searching..." : "Search Rooms"}
+            showTitle={false}
+          />
 
           {error && (
             <Alert severity="error" className="mt-40">

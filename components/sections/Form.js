@@ -20,7 +20,7 @@ import {
   AcUnit as AcUnitIcon,
   Landscape as LandscapeIcon,
 } from "@mui/icons-material";
-import Lookup from "@/components/custom/Lookup";
+import LookupWidget from "@/components/custom/LookupWidget";
 
 const Section = styled(Box)(({ theme }) => ({
   padding: theme.spacing(8, 0),
@@ -57,7 +57,7 @@ const AmenityIcon = styled(ListItemIcon)(({ theme }) => ({
 export default function Form() {
   return (
     <>
-      <Lookup />
+      <LookupWidget />
       <Section>
         <Container maxWidth="lg">
           <Grid container spacing={4}>
