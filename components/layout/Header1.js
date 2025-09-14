@@ -12,71 +12,67 @@ import {
   Drawer,
   List,
   ListItem,
-  ListItemText,
   Typography,
-  TextField,
-  InputAdornment,
-  useScrollTrigger,
-  Slide,
   styled,
 } from "@mui/material";
-import {
-  Menu as MenuIcon,
-  Close as CloseIcon,
-  Phone as PhoneIcon,
-  Email as EmailIcon,
-  AccessTime as AccessTimeIcon,
-  Search as SearchIcon,
-} from "@mui/icons-material";
-import MobileMenu from "./MobileMenu";
-import NavLinks from "./NavLinks";
-import Logo from "./../../public/images/resort-logo-horizontal.png";
+import { Menu as MenuIcon, Close as CloseIcon, Phone as PhoneIcon, Email as EmailIcon } from "@mui/icons-material";
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  backgroundColor: theme.palette.secondary.main,
-  color: theme.palette.secondary.contrastText,
-  boxShadow: "none",
-  borderBottom: `1px solid ${theme.palette.secondary.dark}`,
+  backgroundColor: "#f5f5dc", // Light yellow/beige background
+  color: "#2d4a52", // Dark blue text
+  boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+  borderBottom: "none",
 }));
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "space-between",
   alignItems: "center",
   minHeight: 80,
+  paddingTop: theme.spacing(1),
+  paddingBottom: theme.spacing(1),
+  paddingLeft: theme.spacing(3),
+  paddingRight: theme.spacing(3),
+  gap: theme.spacing(2),
+  [theme.breakpoints.down("lg")]: {
+    gap: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+  },
   [theme.breakpoints.down("md")]: {
     minHeight: 64,
+    paddingTop: theme.spacing(0.5),
+    paddingBottom: theme.spacing(0.5),
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
+    gap: theme.spacing(1),
   },
 }));
 
 const NavSection = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  gap: theme.spacing(3),
+  gap: theme.spacing(4),
   flex: 1,
-  justifyContent: "flex-end",
-  [theme.breakpoints.down("md")]: {
+  justifyContent: "flex-start",
+  marginLeft: theme.spacing(2),
+  [theme.breakpoints.down("lg")]: {
+    gap: theme.spacing(2),
+    marginLeft: theme.spacing(1),
+  },
+  [theme.breakpoints.down("xl")]: {
     display: "none",
   },
 }));
 
-const CenterLogo = styled(Box)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  minWidth: 140,
-  minHeight: 48,
-}));
-
 const MobileMenuButton = styled(IconButton)(({ theme }) => ({
-  color: theme.palette.secondary.contrastText,
+  color: "#2d4a52",
   display: "none",
-  [theme.breakpoints.down("md")]: {
+  [theme.breakpoints.down("xl")]: {
     display: "block",
     position: "absolute",
     left: theme.spacing(1),
+    zIndex: 2,
   },
 }));
 
@@ -94,12 +90,33 @@ const SocialLinks = styled(Box)(({ theme }) => ({
 }));
 
 const NavButton = styled(Button)(({ theme }) => ({
-  color: theme.palette.secondary.contrastText,
+  color: "#2d4a52",
   fontWeight: 500,
   fontFamily: '"FinkHeavy-Medium", "Roboto", "Helvetica", "Arial", sans-serif',
+  textTransform: "none",
+  whiteSpace: "nowrap",
   "&:hover": {
-    color: theme.palette.primary.main,
+    color: "#1a3a42",
     backgroundColor: "transparent",
+  },
+}));
+
+const BookNowButton = styled(Button)(({ theme }) => ({
+  backgroundColor: "#2d4a52",
+  color: "white",
+  fontWeight: 700,
+  fontFamily: '"FinkHeavy-Medium", "Roboto", "Helvetica", "Arial", sans-serif',
+  textTransform: "none",
+  padding: theme.spacing(1.5, 4),
+  borderRadius: 8,
+  whiteSpace: "nowrap",
+  minWidth: "fit-content",
+  "&:hover": {
+    backgroundColor: "#1a3a42",
+  },
+  [theme.breakpoints.down("sm")]: {
+    padding: theme.spacing(1, 2),
+    fontSize: "0.875rem",
   },
 }));
 
@@ -107,13 +124,11 @@ const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const handleDrawerToggle = () => setDrawerOpen((open) => !open);
 
-  // Left and right nav links
-  const leftLinks = [
-    { label: "Home", href: "/" },
+  // All navigation links (centered)
+  const navLinks = [
     { label: "Rooms & Suites", href: "/rooms" },
     { label: "Amenities", href: "/amenities" },
-  ];
-  const rightLinks = [
+    { label: "Home", href: "/" },
     { label: "Experiences", href: "/experiences" },
     { label: "Gallery", href: "/gallery" },
     { label: "FAQ", href: "/faq" },
@@ -121,37 +136,72 @@ const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
 
   return (
     <StyledAppBar position="fixed">
-      <Container maxWidth="lg" sx={{ position: "relative" }}>
+      <Container maxWidth={false} sx={{ position: "relative" }}>
         <StyledToolbar>
           {/* Mobile menu button */}
           <MobileMenuButton edge="start" onClick={handleDrawerToggle} aria-label="menu">
             <MenuIcon />
           </MobileMenuButton>
 
-          {/* Left nav links */}
-          <NavSection sx={{ justifyContent: "flex-start" }}>
-            {leftLinks.map((link) => (
-              <NavButton key={link.label} component={Link} href={link.href}>
-                {link.label}
-              </NavButton>
-            ))}
-          </NavSection>
+          {/* Logo and navigation section */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flex: 1,
+              marginLeft: { xs: 6, xl: 0 }, // Add left margin on mobile to avoid hamburger overlap
+            }}
+          >
+            {/* Logo */}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: { xs: 2, md: 4 },
+                flexShrink: 0,
+                minWidth: { xs: 120, md: 140 },
+              }}
+            >
+              <Link href="/">
+                <Image
+                  src="/images/resort-logo-horizontal.png"
+                  alt="Puffer Isle Resort Logo"
+                  width={140}
+                  height={48}
+                  priority
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    maxWidth: "140px",
+                    minWidth: "120px",
+                  }}
+                />
+              </Link>
+            </Box>
 
-          {/* Centered logo */}
-          <CenterLogo>
-            <Link href="/">
-              <Image width={140} height={48} src={Logo} alt="Puffer Isle Resort Logo" />
-            </Link>
-          </CenterLogo>
+            {/* Navigation links */}
+            <NavSection sx={{ flex: 1, marginLeft: 0 }}>
+              {navLinks.map((link) => (
+                <NavButton key={link.label} component={Link} href={link.href}>
+                  {link.label}
+                </NavButton>
+              ))}
+            </NavSection>
+          </Box>
 
-          {/* Right nav links */}
-          <NavSection sx={{ justifyContent: "flex-end" }}>
-            {rightLinks.map((link) => (
-              <NavButton key={link.label} component={Link} href={link.href}>
-                {link.label}
-              </NavButton>
-            ))}
-          </NavSection>
+          {/* BOOK NOW button on right */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexShrink: 0,
+              marginLeft: { xs: 1, sm: 2 },
+            }}
+          >
+            <BookNowButton component={Link} href="/check-availability">
+              BOOK NOW
+            </BookNowButton>
+          </Box>
         </StyledToolbar>
       </Container>
       {/* Mobile Drawer */}
@@ -192,7 +242,7 @@ const Header1 = ({ handleMobileMenu, searchToggle, handleToggle, scroll }) => {
 
           {/* Mobile navigation */}
           <List sx={{ mt: 3 }}>
-            {[...leftLinks, ...rightLinks].map((link) => (
+            {navLinks.map((link) => (
               <ListItem key={link.label} disablePadding>
                 <Button
                   component={Link}
